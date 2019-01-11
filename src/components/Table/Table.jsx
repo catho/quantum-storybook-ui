@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Colors from '../../../components/Colors';
+import { grey } from '../../ui/Colors';
 
 const StyledTable = styled.table`
   width: 100%;
@@ -9,7 +9,7 @@ const StyledTable = styled.table`
 
   th,
   td {
-    border: 1px solid ${Colors.SECONDARY['400']};
+    border: 1px solid ${grey.medium};
     padding: 8px;
     font-size: 14px;
     text-align: left;
