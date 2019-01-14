@@ -2,7 +2,7 @@
 // export { default as AutoProps } from './AutoProps';
 // export { default as AutoPropsApi } from './AutoPropsApi';
 // export { default as CodeExample } from './CodeExample';
-// export { default as CodeToClipboard } from './CodeToClipboard';
+export { default as CodeToClipboard } from './CodeToClipboard';
 export { default as ComponentPanel } from './ComponentPanel';
 export { default as Example } from './Example';
 export { default as Heading } from './Heading';
