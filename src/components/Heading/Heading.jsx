@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Atom from '../../static/atom.svg';
+import Atom from '../../../public/atom.svg';
 import GitlabLink from '../GitlabLink';
 
 const Title = styled.h1`

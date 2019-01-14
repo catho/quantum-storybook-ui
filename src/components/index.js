@@ -5,7 +5,7 @@
 // export { default as CodeToClipboard } from './CodeToClipboard';
 // export { default as ComponentPanel } from './ComponentPanel';
 // export { default as Example } from './Example';
-// export { default as Heading } from './Heading';
+export { default as Heading } from './Heading';
 export { default as HowToImport } from './HowToImport';
 export { default as LivePreview } from './LivePreview';
 export { default as Subtitle } from './Subtitle';
