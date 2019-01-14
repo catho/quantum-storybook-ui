@@ -1,4 +1,4 @@
-// export { default as AutoExample } from './AutoExample';
+export { default as AutoExample } from './AutoExample';
 export { default as AutoProps } from './AutoProps';
 export { default as AutoPropsApi } from './AutoPropsApi';
 export { default as CodeExample } from './CodeExample';
