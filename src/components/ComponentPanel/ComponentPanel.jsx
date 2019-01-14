@@ -1,10 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col } from '../../../components/Grid';
+import styled from 'styled-components';
 import AutoProps from '../AutoProps';
 import LivePreview from '../LivePreview';
 import CodeExample from '../CodeExample';
 import HowToImport from '../HowToImport';
+
+const Panel = styled.main`
+  display: grid;
+  grid-template: 
+    ". ."
+    50% 50%
+    ". .";
+`;
 
 class ComponentPanel extends React.Component {
   constructor(props) {
@@ -29,30 +37,21 @@ class ComponentPanel extends React.Component {
     const { component: Component, importModules } = this.props;
 
     return (
-      <React.Fragment>
-        <Row>
-          <Col desktop={12} tablet={12}>
-            <HowToImport importModules={importModules} />
-          </Col>
+      <Panel>
+        <HowToImport importModules={importModules} />
+        <AutoProps
+          component={Component}
+          state={this.state}
+          changeState={this.handleChange}
+        />
 
-          <Col desktop={6} tablet={6}>
-            <AutoProps
-              component={Component}
-              state={this.state}
-              changeState={this.handleChange}
-            />
-          </Col>
-
-          <Col desktop={6} tablet={6}>
-            <LivePreview
-              component={Component}
-              state={this.state}
-              onChange={this.handleChange}
-            />
-            <CodeExample component={Component} state={this.state} />
-          </Col>
-        </Row>
-      </React.Fragment>
+        <LivePreview
+          component={Component}
+          state={this.state}
+          onChange={this.handleChange}
+        />
+        <CodeExample component={Component} state={this.state} />
+      </Panel>
     );
   }
 }

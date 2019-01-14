@@ -5,7 +5,7 @@ import { grey } from '../../ui/Colors';
 import CodeExample from '../CodeExample';
 
 const Small = styled.small`
-  color: ${grey[3]};
+  color: ${grey.harder};
   cursor: pointer;
   text-transform: lowercase;
 `;
