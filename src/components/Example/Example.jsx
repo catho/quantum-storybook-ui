@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Colors from '../../../components/Colors';
+import { grey } from '../../ui/Colors';
 import CodeExample from '../CodeExample';
 
 const Small = styled.small`
-  color: ${Colors.SECONDARY['700']};
+  color: ${grey[3]};
   cursor: pointer;
   text-transform: lowercase;
 `;
