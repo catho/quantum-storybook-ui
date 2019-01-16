@@ -1,5 +1,5 @@
 import { configure, addDecorator } from '@storybook/react';
-import Frame from '../src/decorators/Frame';
+import Frame from '../src/components/Frame';
 
 const stories = require.context('../src/stories', false, /.story.jsx?$/);
 
