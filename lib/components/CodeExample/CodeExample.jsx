@@ -10,7 +10,7 @@ const ScrollWrapper = styled.div`
   position: relative;
   padding-top: 30px;
   background-color: ${Colors.grey.light};
-  box-shadow: 0px 6px 25px 0px ${Colors.black};
+  box-shadow: 0px 6px 25px 0px ${Colors.hexToRgba(Colors.black, 0.3)};
 `;
 
 const CodeBlock = styled.pre`
@@ -30,7 +30,7 @@ const CodeBlock = styled.pre`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${Colors.black};
+    background-color: ${Colors.hexToRgba(Colors.black, 0.3)};
     border-radius: 5px;
   }
 `;
