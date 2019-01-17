@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { blue } from '../../ui/Colors';
+import Colors from '../../ui/Colors';
 
 const Navbar = styled.ul`
   display: flex;
@@ -36,19 +36,19 @@ const NavItem = styled.li`
   }
 
   &:hover {
-    color: ${blue.light};
+    color: ${Colors.blue.light};
   }
 
   ${props =>
     props.active &&
     css`
-      color: ${blue.light};
-      border-color: ${blue.light};
+      color: ${Colors.blue.light};
+      border-color: ${Colors.blue.light};
 
       &::before {
         width: 100%;
         height: 100%;
-        border-bottom-color: ${blue.light};
+        border-bottom-color: ${Colors.blue.light};
       }
     `};
 `;

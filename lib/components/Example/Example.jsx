@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { grey } from '../../ui/Colors';
+import Colors from '../../ui/Colors';
 import CodeExample from '../CodeExample';
 
 const Small = styled.small`
-  color: ${grey.harder};
+  color: ${Colors.grey.harder};
   cursor: pointer;
   text-transform: lowercase;
 `;
