@@ -6,15 +6,32 @@ import 'semantic-ui-css/components/transition.css';
 
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import light from '../../assets/fonts/Montserrat-Light.ttf';
+import regular from '../../assets/fonts/Montserrat-Regular.ttf';
+import bold from '../../assets/fonts/Montserrat-Bold.ttf';
 
 const Container = styled.div`
   padding: 10px 20px;
 `;
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400');
-  @import url('https://fonts.googleapis.com/css?family=Oxygen');
-  @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('${light}') format('truetype');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('${regular}') format('truetype');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('${bold}') format('truetype');
+    font-weight: 700;
+  }
 
   body {
     margin: 0;
@@ -22,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: 'Montserrat';
+    font-family: Montserrat, sans-serif;
   }
 
   *:focus {
@@ -80,7 +97,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  .ui.selection.dropdown {
+  .ui.selection.dropdown,
+  .ui.search.selection.dropdown {
     min-width: 11em;
     min-height: 1em;
   }

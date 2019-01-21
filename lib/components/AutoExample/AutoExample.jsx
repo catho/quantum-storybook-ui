@@ -5,7 +5,7 @@ import Heading from '../Heading';
 import AutoPropsApi from '../AutoPropsApi';
 import ComponentPanel from '../ComponentPanel';
 import { TabbedView, Tab } from '../TabbedView';
-import Atom from '../../assets/atom.svg';
+import Atom from '../../assets/images/atom.svg';
 
 const AutoExample = ({
   component: Component,

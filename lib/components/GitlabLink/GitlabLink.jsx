@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import GitlabLogo from '../../assets/logoGitlab.svg';
+import GitlabLogo from '../../assets/images/logoGitlab.svg';
 
 const baseUrl =
   'http://gitlab.devel/frontend-platform/quantum/blob/master/components/';
