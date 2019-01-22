@@ -1,14 +1,15 @@
-import 'semantic-ui-css/components/form.css';
-import 'semantic-ui-css/components/checkbox.css';
-import 'semantic-ui-css/components/dropdown.css';
-import 'semantic-ui-css/components/input.css';
-import 'semantic-ui-css/components/transition.css';
-
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+
+import bold from '../../assets/fonts/Montserrat-Bold.ttf';
 import light from '../../assets/fonts/Montserrat-Light.ttf';
 import regular from '../../assets/fonts/Montserrat-Regular.ttf';
-import bold from '../../assets/fonts/Montserrat-Bold.ttf';
+
+import 'semantic-ui-css/components/checkbox.css';
+import 'semantic-ui-css/components/dropdown.css';
+import 'semantic-ui-css/components/form.css';
+import 'semantic-ui-css/components/input.css';
+import 'semantic-ui-css/components/transition.css';
 
 const Container = styled.div`
   padding: 10px 20px;
