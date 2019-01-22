@@ -16,11 +16,12 @@
     "styled-components": ">= 4"
   },
   "scripts": {
-    "storybook": "start-storybook -p 9009 -s public",
-    "prebuild:lib": "rm -rf dist",
-    "build-storybook": "build-storybook -s public",
+    "build": "yarn build:lib",
+    "prebuild": "rimraf dist",
     "build:lib": "babel ./src --out-dir lib --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
-    "clean": "rimraf lib && rimraf dist"
+    "prebuild:lib": "rimraf lib",
+    "build-storybook": "build-storybook -s public",
+    "storybook": "start-storybook -p 9009 -s public"
   },
   "eslintConfig": {
     "extends": "react-app"
