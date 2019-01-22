@@ -56,10 +56,6 @@ const GlobalStyle = createGlobalStyle`
     padding: 2px 5px;
   }
 
-  .highlight {
-    padding: 20px !important;
-  }
-
   h1, h4 {
     font-weight: 300;
     margin-top: 40px;

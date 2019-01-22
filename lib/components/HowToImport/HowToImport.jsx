@@ -8,6 +8,10 @@ import Title from '../Title';
 
 const HighlightWrapper = styled.div`
   position: relative;
+
+  .highlight {
+    padding: 20px;
+  }
 `;
 
 const HowToImport = ({ importModules, from }) => {
