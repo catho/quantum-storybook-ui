@@ -12,7 +12,8 @@
   },
   "peerDependencies": {
     "react": ">= 16",
-    "react-dom": ">= 16"
+    "react-dom": ">= 16",
+    "styled-components": ">= 4"
   },
   "scripts": {
     "storybook": "start-storybook -p 9009 -s public",
@@ -41,6 +42,7 @@
     "@storybook/react": "^4.1.6",
     "babel-loader": "^8.0.5",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "styled-components": "^4.1.3"
   }
 }
