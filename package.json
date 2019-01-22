@@ -19,7 +19,8 @@
     "storybook": "start-storybook -p 9009 -s public",
     "prebuild:lib": "rm -rf dist",
     "build-storybook": "build-storybook -s public",
-    "build:lib": "babel ./lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__"
+    "build:lib": "babel ./lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "clean": "rimraf lib && rimraf dist"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +44,7 @@
     "babel-loader": "^8.0.5",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "rimraf": "^2.6.3",
     "styled-components": "^4.1.3"
   }
 }
