@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 9009 -s public",
     "prebuild:lib": "rm -rf dist",
     "build-storybook": "build-storybook -s public",
-    "build:lib": "babel ./lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
+    "build:lib": "babel ./src --out-dir lib --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",
     "clean": "rimraf lib && rimraf dist"
   },
   "eslintConfig": {
