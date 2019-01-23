@@ -1,10 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 
-import bold from '../../assets/fonts/Montserrat-Bold.ttf';
-import light from '../../assets/fonts/Montserrat-Light.ttf';
-import regular from '../../assets/fonts/Montserrat-Regular.ttf';
-
 import 'semantic-ui-css/components/checkbox.css';
 import 'semantic-ui-css/components/dropdown.css';
 import 'semantic-ui-css/components/form.css';
@@ -16,23 +12,7 @@ const Container = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Montserrat';
-    src: url('${light}') format('truetype');
-    font-weight: 300;
-  }
-
-  @font-face {
-    font-family: 'Montserrat';
-    src: url('${regular}') format('truetype');
-    font-weight: 400;
-  }
-
-  @font-face {
-    font-family: 'Montserrat';
-    src: url('${bold}') format('truetype');
-    font-weight: 700;
-  }
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
   body {
     margin: 0;

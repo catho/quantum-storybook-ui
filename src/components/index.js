@@ -11,6 +11,6 @@ export { default as HowToImport } from './HowToImport';
 export { default as LivePreview } from './LivePreview';
 export { default as Subtitle } from './Subtitle';
 export { TabbedView, Tab } from './TabbedView';
-export { default as Frame } from './Frame';
 export { default as Table } from './Table';
+export { default as Frame } from './Frame';
 export { default as Title } from './Title';
