@@ -9,7 +9,6 @@
 /coverage
 
 # production
-/lib
 /dist
 
 # misc
@@ -22,5 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-stats.html
