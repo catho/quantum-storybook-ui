@@ -8,10 +8,26 @@ import HowToImport from '../HowToImport';
 
 const Panel = styled.main`
   display: grid;
-  grid-template: 
-    ". ."
-    50% 50%
-    ". .";
+  grid-template-areas:
+    'import import'
+    'props preview'
+    'props code';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 110px 0fr 1fr;
+  grid-gap: 20px;
+`;
+
+const Import = styled.div`
+  grid-area: import;
+`;
+const Props = styled.div`
+  grid-area: props;
+`;
+const Preview = styled.div`
+  grid-area: preview;
+`;
+const Code = styled.div`
+  grid-area: code;
 `;
 
 class ComponentPanel extends React.Component {
@@ -38,19 +54,29 @@ class ComponentPanel extends React.Component {
 
     return (
       <Panel>
-        <HowToImport importModules={importModules} />
-        <AutoProps
-          component={Component}
-          state={this.state}
-          changeState={this.handleChange}
-        />
+        <Import>
+          <HowToImport importModules={importModules} />
+        </Import>
 
-        <LivePreview
-          component={Component}
-          state={this.state}
-          onChange={this.handleChange}
-        />
-        <CodeExample component={Component} state={this.state} />
+        <Props>
+          <AutoProps
+            component={Component}
+            state={this.state}
+            changeState={this.handleChange}
+          />
+        </Props>
+
+        <Preview>
+          <LivePreview
+            component={Component}
+            state={this.state}
+            onChange={this.handleChange}
+          />
+        </Preview>
+
+        <Code>
+          <CodeExample component={Component} state={this.state} />
+        </Code>
       </Panel>
     );
   }

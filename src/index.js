@@ -13,8 +13,8 @@ import {
   TabbedView,
   Tab,
   Table,
-  Title,
   Frame,
+  Title,
 } from './components';
 
 export {
@@ -32,6 +32,6 @@ export {
   TabbedView,
   Tab,
   Table,
-  Title,
   Frame,
+  Title,
 };
