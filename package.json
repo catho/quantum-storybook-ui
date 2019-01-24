@@ -1,7 +1,6 @@
 {
   "name": "@catho/quantum-storybook-ui",
   "version": "0.1.0",
-  "private": true,
   "main": "dist/index.js",
   "dependencies": {
     "react-copy-to-clipboard": "^5.0.1",
@@ -20,7 +19,8 @@
     "build": "babel ./src --out-dir dist --copy-files",
     "build-storybook": "build-storybook -s public",
     "storybook": "start-storybook -p 9009 -s public",
-    "prepublish": "yarn build"
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
