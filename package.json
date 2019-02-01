@@ -1,5 +1,5 @@
 {
-  "name": "@catho/quantum-storybook-ui",
+  "name": "@catho-private/quantum-storybook-ui",
   "version": "0.1.0",
   "main": "dist/index.js",
   "dependencies": {
