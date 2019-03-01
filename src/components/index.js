@@ -14,3 +14,5 @@ export { TabbedView, Tab } from './TabbedView';
 export { default as Table } from './Table';
 export { default as Frame } from './Frame';
 export { default as Title } from './Title';
+export { default as StoryContainer } from './StoryContainer';
+export { default as SimpleHighlight } from './SimpleHighlight';

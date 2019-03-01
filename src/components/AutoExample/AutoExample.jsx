@@ -5,7 +5,6 @@ import Heading from '../Heading';
 import AutoPropsApi from '../AutoPropsApi';
 import ComponentPanel from '../ComponentPanel';
 import { TabbedView, Tab } from '../TabbedView';
-import Atom from '../../assets/images/atom.svg';
 
 const AutoExample = ({
   component: Component,
@@ -13,10 +12,10 @@ const AutoExample = ({
   element = <Component {...props} />,
   name = element.type.displayName || element.type.name || element.type,
   importModules = name,
-  additionalTabs,
+  additionalTabs
 }) => (
   <React.Fragment>
-    <Heading name={name} image={Atom}>
+    <Heading name={name}>
       <TabbedView>
         <Tab title="Usage">
           <ComponentPanel component={element} importModules={importModules} />
@@ -34,7 +33,7 @@ const AutoExample = ({
 
 AutoExample.defaultProps = {
   componentProps: {},
-  additionalTabs: null,
+  additionalTabs: null
 };
 
 AutoExample.propTypes = {
@@ -45,8 +44,8 @@ AutoExample.propTypes = {
   importModules: PropTypes.string,
   additionalTabs: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
 AutoExample.displayName = 'AutoExample';

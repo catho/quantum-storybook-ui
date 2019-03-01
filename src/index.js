@@ -15,6 +15,8 @@ import {
   Table,
   Frame,
   Title,
+  StoryContainer,
+  SimpleHighlight
 } from './components';
 
 export {
@@ -34,4 +36,6 @@ export {
   Table,
   Frame,
   Title,
+  StoryContainer,
+  SimpleHighlight
 };
