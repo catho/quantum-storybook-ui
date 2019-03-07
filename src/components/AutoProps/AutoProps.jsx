@@ -82,25 +82,51 @@ class AutoProps extends React.Component {
           });
 
           return (
-            <Select
-              search
-              options={options}
-              onChange={this.handleChange}
-              name={propName}
+            <select
+              onChange={e =>
+                this.handleChange(e, {
+                  value: e.target.value,
+                  name: propName,
+                })
+              }
               defaultValue={propValue}
-              path={propPath}
-            />
+              name={propName}
+            >
+              {options.map(option => {
+                return (
+                  <option key={option.key} value={option.value}>
+                    {option.text}
+                  </option>
+                );
+              })}
+            </select>
           );
+
+          // return (
+          //   <Select
+          //     search
+          //     options={options}
+          //     onChange={this.handleChange}
+          //     name={propName}
+          //     defaultValue={propValue}
+          //     path={propPath}
+          //   />
+          // );
         },
       },
       {
         type: ['bool'],
         controller: (propPath, propName, { name }) => {
           return (
-            <Checkbox
-              toggle
+            <input
+              type="checkbox"
               checked={propValue}
-              onChange={this.handleChange}
+              onChange={e =>
+                this.handleChange(e, {
+                  name: propName,
+                  value: e.target.checked,
+                })
+              }
               name={propName}
               path={propPath}
             />
@@ -111,9 +137,14 @@ class AutoProps extends React.Component {
         type: ['string', 'number'],
         controller: (propPath, propName, { name }) => {
           return (
-            <Input
+            <input
               type={name == 'string' ? 'text' : name}
-              onChange={this.handleChange}
+              onChange={e =>
+                this.handleChange(e, {
+                  name: propName,
+                  value: e.target.value,
+                })
+              }
               name={propName}
               path={propPath}
               value={propValue}
@@ -155,7 +186,7 @@ class AutoProps extends React.Component {
   renderComponentByType = (propPath, propName, propKey) => {
     const { [propName]: propValue } = changePropValue(
       this.props.state,
-      propPath,
+      propPath
     );
 
     return this.getPropController(propPath, propName, propValue, propKey);
