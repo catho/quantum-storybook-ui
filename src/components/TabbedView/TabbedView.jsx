@@ -7,21 +7,24 @@ const Navbar = styled.ul`
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
+  list-style: none;
   margin: 0 0 25px 0;
   padding: 0;
-  list-style: none;
 `;
 
 Navbar.displayName = 'Navbar';
 
 const NavItem = styled.li`
-  padding: 18px 18px 16px;
-  white-space: nowrap;
-  text-align: center;
-  overflow: hidden;
-  text-overflow: ellipsis;
   cursor: pointer;
+  font-size: 17px;
+  letter-spacing: initial;
+  line-height: initial;
+  overflow: hidden;
+  padding: 18px 18px 16px;
   position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &::before {
     content: '';
@@ -91,12 +94,12 @@ class TabbedView extends React.Component {
                 >
                   {tab.props.title}
                 </NavItem>
-              ),
+              )
           )}
         </Navbar>
 
         {React.Children.map(children, child =>
-          renderIf(children.indexOf(child) === activeTab, () => child),
+          renderIf(children.indexOf(child) === activeTab, () => child)
         )}
       </React.Fragment>
     );
