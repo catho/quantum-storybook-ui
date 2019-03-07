@@ -33,13 +33,13 @@ class Example extends React.Component {
 
     return (
       <React.Fragment>
+        {Component}
         <h3>
           {title}{' '}
           <Small onClick={this.handleClick}>
             {show ? 'Hide' : 'Show'} code
           </Small>
         </h3>
-
         <Code>
           {show && (
             <CodeExample
@@ -50,8 +50,6 @@ class Example extends React.Component {
             />
           )}
         </Code>
-
-        {Component}
       </React.Fragment>
     );
   }
