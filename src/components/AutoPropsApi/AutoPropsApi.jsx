@@ -48,7 +48,7 @@ const renderPropType = (type = {}) => {
             <code>{removeQuotes(v.value)}</code>
             {allValues[i + 1] && ', '}
           </span>
-        )),
+        ))
       ),
 
     union: value =>
@@ -58,7 +58,7 @@ const renderPropType = (type = {}) => {
             <code>{renderPropType(v)}</code>
             {allValues[i + 1] && ', '}
           </span>
-        )),
+        ))
       ),
 
     shape: value =>
@@ -77,7 +77,7 @@ const renderPropType = (type = {}) => {
                 )}
               </li>
             ))}
-        </ul>,
+        </ul>
       ),
 
     arrayOf: value => wrap('arrayOf')(renderPropType(value)),
@@ -92,7 +92,9 @@ const renderPropType = (type = {}) => {
 
 const AutoPropsApi = ({ component: Component, title, ignoredProps }) => (
   <StoryContainer>
-    <Title as="h2">{title || 'Available props'}</Title>
+    <Title as="h2" style={{ paddingTop: 0 }}>
+      {title || 'Available props'}
+    </Title>
     {Component.__docgenInfo && (
       <ReactMarkdown source={Component.__docgenInfo.description} />
     )}
