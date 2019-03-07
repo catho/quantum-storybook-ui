@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Colors from '../../ui/Colors';
 
 const StoryContainer = styled.div`
   margin: 0 auto;
@@ -14,7 +13,7 @@ const Title = ({ children, ...rest }) => (
 );
 
 Title.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 export default Title;
