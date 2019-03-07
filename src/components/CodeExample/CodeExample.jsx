@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import CodeToClipboard from '../CodeToClipboard';
 import Title from '../Title';
 import ComponentHighlight from '../ComponentHighlight';
+import SimpleHighlight from '../SimpleHighlight';
 import Colors from '../../ui/Colors';
 
 const ScrollWrapper = styled.div`
@@ -113,7 +114,7 @@ const componentToString = (component, state, level = 0) => {
     }`;
     content += children
       ? `>\n${React.Children.map(children, child =>
-          componentToString(child, child.props, level + INDENTATION_SIZE),
+          componentToString(child, child.props, level + INDENTATION_SIZE)
         ).join('\n')}\n${indentation}</${name}>`
       : `\n${indentation}/>`;
   } else {
@@ -126,25 +127,14 @@ const componentToString = (component, state, level = 0) => {
 const msg = importModules =>
   `import ${'{'} ${importModules} ${'}'} from '@cathodevel/quantum';\n\n`;
 
-const CodeExample = ({ component, state, code, showTitle, withImport }) => {
+const CodeExample = ({ component, state, code, withImport }) => {
   const codeStr =
     code || componentToString(component, state || component.props);
 
   return (
     <React.Fragment>
-      <ScrollWrapper>
-        <WindowControlsWrapper>
-          <WindowControl color="#FF5F56" />
-          <WindowControl color="#FFBD2E" />
-          <WindowControl color="#27C93F" />
-        </WindowControlsWrapper>
-        <CodeBlock>
-          {withImport && msg(withImport)}
-          <ComponentHighlight code={codeStr} />
-        </CodeBlock>
-
-        <CodeToClipboard code={codeStr} backgroundColor={Colors.grey.light} />
-      </ScrollWrapper>
+      {withImport && msg(withImport)}
+      <SimpleHighlight>{codeStr}</SimpleHighlight>
     </React.Fragment>
   );
 };
