@@ -13,7 +13,7 @@ const HeadingWrapper = styled.div`
 const Heading = ({ name, title, children }) => (
   <HeadingWrapper>
     <StoryContainer>
-      <Title>{title || `<${name} />`}</Title>
+      <Title>{title || name}</Title>
       <p>{children}</p>
     </StoryContainer>
   </HeadingWrapper>

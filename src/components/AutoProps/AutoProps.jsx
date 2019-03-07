@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Title from '../Title';
+import Table from '../Table';
 import { Input, Checkbox, Select } from 'semantic-ui-react';
 import Colors from '../../ui/Colors';
 
@@ -223,15 +223,13 @@ class AutoProps extends React.Component {
 
     return (
       <React.Fragment>
-        <Title>Props</Title>
-
-        <table>
+        <Table>
           <tbody>
             {propRows.map(row => {
               return row;
             })}
           </tbody>
-        </table>
+        </Table>
       </React.Fragment>
     );
   }

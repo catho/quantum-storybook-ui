@@ -35,7 +35,6 @@ const Preview = styled.div`
 
 const LivePreview = ({ component: { type: Component }, state, onChange }) => (
   <React.Fragment>
-    <Title>Preview</Title>
     <Preview>
       <Component {...state} onChange={(e, data) => onChange(data)} />
     </Preview>

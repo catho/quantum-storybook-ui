@@ -24,7 +24,6 @@ const NavItem = styled.li`
   position: relative;
 
   &::before {
-    border-bottom: 3px solid transparent;
     content: '';
     position: absolute;
     bottom: 0;
@@ -36,21 +35,10 @@ const NavItem = styled.li`
   }
 
   &:hover {
-    color: ${Colors.blue.light};
+    color: ${Colors.blue.curious};
   }
 
-  ${props =>
-    props.active &&
-    css`
-      color: ${Colors.blue.light};
-      border-color: ${Colors.blue.light};
-
-      &::before {
-        width: 100%;
-        height: 100%;
-        border-bottom-color: ${Colors.blue.light};
-      }
-    `};
+  ${props => props.active && `color: ${Colors.blue.curious};`};
 `;
 
 NavItem.displayName = 'NavItem';

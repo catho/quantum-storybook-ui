@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Colors from '../../ui/Colors';
 
 const HightlightWrapper = styled.pre`
-  @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
-
   position: relative;
   padding: 10px;
   color: ${({ fontColor }) => fontColor};
@@ -12,8 +11,6 @@ const HightlightWrapper = styled.pre`
 
   code {
     background-color: transparent;
-    font-family: 'Fira Mono';
-    font-size: 12px;
   }
 `;
 
@@ -23,9 +20,14 @@ const SimpleHighlight = ({ backgroundColor, fontColor, children }) => (
   </HightlightWrapper>
 );
 
+SimpleHighlight.defaultProps = {
+  backgroundColor: Colors.blue.selago,
+  fontColor: Colors.blue.curious
+};
+
 SimpleHighlight.propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
-  fontColor: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string,
+  fontColor: PropTypes.string,
   children: PropTypes.string.isRequired
 };
 

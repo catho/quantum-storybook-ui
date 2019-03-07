@@ -15,19 +15,19 @@ const AutoExample = ({
   additionalTabs
 }) => (
   <React.Fragment>
-    <Heading name={name}>
-      <TabbedView>
-        <Tab title="Usage">
-          <ComponentPanel component={element} importModules={importModules} />
-        </Tab>
+    <Heading name={name} />
 
-        <Tab title="API">
-          <AutoPropsApi component={element.type} />
-        </Tab>
+    <TabbedView>
+      <Tab title="Usage">
+        <ComponentPanel component={element} importModules={importModules} />
+      </Tab>
 
-        {additionalTabs}
-      </TabbedView>
-    </Heading>
+      <Tab title="API">
+        <AutoPropsApi component={element.type} />
+      </Tab>
+
+      {additionalTabs}
+    </TabbedView>
   </React.Fragment>
 );
 

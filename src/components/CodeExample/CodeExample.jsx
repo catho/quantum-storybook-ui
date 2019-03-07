@@ -132,7 +132,6 @@ const CodeExample = ({ component, state, code, showTitle, withImport }) => {
 
   return (
     <React.Fragment>
-      {showTitle && <Title>Code</Title>}
       <ScrollWrapper>
         <WindowControlsWrapper>
           <WindowControl color="#FF5F56" />

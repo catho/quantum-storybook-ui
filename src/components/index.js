@@ -12,7 +12,7 @@ export { default as LivePreview } from './LivePreview';
 export { default as Subtitle } from './Subtitle';
 export { TabbedView, Tab } from './TabbedView';
 export { default as Table } from './Table';
-export { default as Frame } from './Frame';
 export { default as Title } from './Title';
 export { default as StoryContainer } from './StoryContainer';
 export { default as SimpleHighlight } from './SimpleHighlight';
+export { default as GlobalStyle } from './GlobalStyle';

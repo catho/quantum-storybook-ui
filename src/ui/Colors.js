@@ -8,7 +8,9 @@ class Colors {
   static blue = {
     light: '#03a9f4',
     sanjuan: '#294661',
-    bayoux: '#546B81'
+    bayoux: '#546B81',
+    curious: '#1a82e2',
+    selago: '#e8f2fc'
   };
   static black = '#000000';
   static white = '#FFFFFF';
