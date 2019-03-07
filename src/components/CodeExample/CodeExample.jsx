@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import CodeToClipboard from '../CodeToClipboard';
-import Title from '../Title';
-import ComponentHighlight from '../ComponentHighlight';
 import SimpleHighlight from '../SimpleHighlight';
 import Colors from '../../ui/Colors';
 
