@@ -10,27 +10,34 @@ const HeadingWrapper = styled.div`
   padding: 0;
 `;
 
+const StyledP = styled.p`
+  font-size: 17px;
+  letter-spacing: initial;
+  line-height: initial;
+`;
+
 const Heading = ({ name, title, children }) => (
   <HeadingWrapper>
     <StoryContainer>
       <Title>{title || name}</Title>
-      <p>{children}</p>
+      <StyledP>{children}</StyledP>
     </StoryContainer>
   </HeadingWrapper>
 );
 
 Heading.defaultProps = {
   name: '',
-  title: ''
+  title: '',
 };
 
 Heading.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
+  test: PropTypes.oneOf(['one', 'two']),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Heading;
