@@ -15,7 +15,7 @@ const Panel = styled.main`
     'props preview'
     'props code';
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 110px 0fr 1fr;
+  grid-template-rows: 234px 0fr 1fr;
   grid-gap: 45px;
 `;
 
@@ -37,7 +37,7 @@ class ComponentPanel extends React.Component {
     super(props);
 
     const {
-      component: { props: componentProps }
+      component: { props: componentProps },
     } = props;
     this.state = componentProps;
   }
@@ -45,7 +45,7 @@ class ComponentPanel extends React.Component {
   handleChange = newState => {
     const state = {
       ...this.state,
-      ...newState
+      ...newState,
     };
 
     this.setState(state);
@@ -59,15 +59,12 @@ class ComponentPanel extends React.Component {
       <StoryContainer>
         <Panel>
           <Import>
-            <Title as="h2" style={{ paddingTop: 0 }}>Importing {importModules}</Title>
-            <SimpleHighlight
-            >
-              {importString}
-            </SimpleHighlight>
+            <Title as="h2">Importing {importModules}</Title>
+            <SimpleHighlight>{importString}</SimpleHighlight>
           </Import>
 
           <Props>
-            <Title as="h2" style={{ paddingTop: 0 }}>Props</Title>
+            <Title as="h2">Props</Title>
             <AutoProps
               component={Component}
               state={this.state}
@@ -76,7 +73,7 @@ class ComponentPanel extends React.Component {
           </Props>
 
           <Preview>
-            <Title as="h2" style={{ paddingTop: 0 }}>Preview</Title>
+            <Title as="h2">Preview</Title>
             <LivePreview
               component={Component}
               state={this.state}
@@ -85,7 +82,7 @@ class ComponentPanel extends React.Component {
           </Preview>
 
           <Code>
-            <Title as="h2" style={{ paddingTop: 0 }}>Code</Title>
+            <Title as="h2">Code</Title>
             <CodeExample component={Component} state={this.state} />
           </Code>
         </Panel>
@@ -96,7 +93,7 @@ class ComponentPanel extends React.Component {
 
 ComponentPanel.propTypes = {
   importModules: PropTypes.string.isRequired,
-  component: PropTypes.instanceOf(Object).isRequired
+  component: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default ComponentPanel;
