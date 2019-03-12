@@ -3,8 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Select from '../Select';
+import Input from '../Input';
 import Table from '../Table';
-import { Input, Checkbox, Select } from 'semantic-ui-react';
+import Checkbox from '../Checkbox';
 import Colors from '../../ui/Colors';
 
 const removeQuotes = str => str.replace(/'/g, '');
@@ -82,15 +84,16 @@ class AutoProps extends React.Component {
           });
 
           return (
-            <select
+            <Select
               onChange={e =>
                 this.handleChange(e, {
-                  value: e.target.value,
                   name: propName,
+                  value: e.target.value,
                 })
               }
               defaultValue={propValue}
               name={propName}
+              path={propPath}
             >
               {options.map(option => {
                 return (
@@ -99,7 +102,7 @@ class AutoProps extends React.Component {
                   </option>
                 );
               })}
-            </select>
+            </Select>
           );
 
           // return (
@@ -118,8 +121,7 @@ class AutoProps extends React.Component {
         type: ['bool'],
         controller: (propPath, propName, { name }) => {
           return (
-            <input
-              type="checkbox"
+            <Checkbox
               checked={propValue}
               onChange={e =>
                 this.handleChange(e, {
@@ -137,7 +139,7 @@ class AutoProps extends React.Component {
         type: ['string', 'number'],
         controller: (propPath, propName, { name }) => {
           return (
-            <input
+            <Input
               type={name == 'string' ? 'text' : name}
               onChange={e =>
                 this.handleChange(e, {

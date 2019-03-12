@@ -33,7 +33,6 @@ Heading.defaultProps = {
 Heading.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
-  test: PropTypes.oneOf(['one', 'two']),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
