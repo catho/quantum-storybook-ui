@@ -104,17 +104,6 @@ class AutoProps extends React.Component {
               })}
             </Select>
           );
-
-          // return (
-          //   <Select
-          //     search
-          //     options={options}
-          //     onChange={this.handleChange}
-          //     name={propName}
-          //     defaultValue={propValue}
-          //     path={propPath}
-          //   />
-          // );
         },
       },
       {
