@@ -9,13 +9,14 @@ import { TabbedView, Tab } from '../TabbedView';
 const AutoExample = ({
   component: Component,
   componentProps: props,
+  description,
   element = <Component {...props} />,
   name = element.type.displayName || element.type.name || element.type,
   importModules = name,
-  additionalTabs
+  additionalTabs,
 }) => (
   <React.Fragment>
-    <Heading name={name} />
+    <Heading name={name}>{description}</Heading>
 
     <TabbedView>
       <Tab title="Usage">
@@ -33,19 +34,21 @@ const AutoExample = ({
 
 AutoExample.defaultProps = {
   componentProps: {},
-  additionalTabs: null
+  description: '',
+  additionalTabs: null,
 };
 
 AutoExample.propTypes = {
   component: PropTypes.instanceOf(Object).isRequired,
   componentProps: PropTypes.instanceOf(Object),
+  description: PropTypes.string,
   element: PropTypes.instanceOf(Object),
   name: PropTypes.string,
   importModules: PropTypes.string,
   additionalTabs: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+    PropTypes.node,
+  ]),
 };
 
 AutoExample.displayName = 'AutoExample';
