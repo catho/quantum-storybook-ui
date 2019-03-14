@@ -5,8 +5,7 @@ import StoryContainer from '../StoryContainer';
 import Title from '../Title';
 
 const HeadingWrapper = styled.div`
-  background-color: rgb(251, 251, 252);
-  border-bottom: 1px solid rgb(233, 236, 239);
+  background-color: rgb(243, 243, 245);
   padding: 0;
 `;
 
