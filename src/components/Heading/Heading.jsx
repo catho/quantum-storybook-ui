@@ -15,10 +15,18 @@ const StyledP = styled.p`
   line-height: initial;
 `;
 
-const Heading = ({ name, title, children }) => (
+const Image = styled.img`
+  margin-right:20px;
+`;
+
+
+const Heading = ({ name, title, image, children }) => (
   <HeadingWrapper>
     <StoryContainer>
-      <Title>{title || name}</Title>
+      <Title>
+      {image && <Image alt={title} src={image} width="50" height="50" />}
+      {title || name}
+      </Title>
       <StyledP>{children}</StyledP>
     </StoryContainer>
   </HeadingWrapper>
@@ -31,6 +39,7 @@ Heading.defaultProps = {
 
 Heading.propTypes = {
   name: PropTypes.string,
+  image: PropTypes.string,
   title: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
