@@ -4,6 +4,7 @@ class Colors {
     medium: '#d1d8dc',
     harder: '#7b909c',
     strong: '#526977',
+    athens: '#f3f3f5'
   };
   static blue = {
     light: '#03a9f4',

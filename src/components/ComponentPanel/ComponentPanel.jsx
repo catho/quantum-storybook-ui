@@ -4,30 +4,28 @@ import styled from 'styled-components';
 import AutoProps from '../AutoProps';
 import LivePreview from '../LivePreview';
 import CodeExample from '../CodeExample';
-import SimpleHighlight from '../SimpleHighlight';
 import StoryContainer from '../StoryContainer';
-import Title from '../Title';
 
 const Panel = styled.main`
   display: grid;
   grid-template-areas:
-    'import import'
     'props preview'
     'props code';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 234px 0fr 1fr;
-  grid-gap: 45px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 2fr;
+  grid-row-gap: 0px;
+  grid-column-gap: 15px;
+  margin-top: 90px;
 `;
 
-const Import = styled.div`
-  grid-area: import;
-`;
 const Props = styled.div`
   grid-area: props;
 `;
+
 const Preview = styled.div`
   grid-area: preview;
 `;
+
 const Code = styled.div`
   grid-area: code;
 `;
@@ -37,7 +35,7 @@ class ComponentPanel extends React.Component {
     super(props);
 
     const {
-      component: { props: componentProps },
+      component: { props: componentProps }
     } = props;
     this.state = componentProps;
   }
@@ -45,7 +43,7 @@ class ComponentPanel extends React.Component {
   handleChange = newState => {
     const state = {
       ...this.state,
-      ...newState,
+      ...newState
     };
 
     this.setState(state);
@@ -53,18 +51,11 @@ class ComponentPanel extends React.Component {
 
   render() {
     const { component: Component, importModules } = this.props;
-    const importString = `import { ${importModules} } from '@cathodevel/quantum';`;
 
     return (
       <StoryContainer>
         <Panel>
-          <Import>
-            <Title as="h2">Importing {importModules}</Title>
-            <SimpleHighlight>{importString}</SimpleHighlight>
-          </Import>
-
           <Props>
-            <Title as="h2">Props</Title>
             <AutoProps
               component={Component}
               state={this.state}
@@ -73,7 +64,6 @@ class ComponentPanel extends React.Component {
           </Props>
 
           <Preview>
-            <Title as="h2">Preview</Title>
             <LivePreview
               component={Component}
               state={this.state}
@@ -82,8 +72,11 @@ class ComponentPanel extends React.Component {
           </Preview>
 
           <Code>
-            <Title as="h2">Code</Title>
-            <CodeExample component={Component} state={this.state} />
+            <CodeExample
+              component={Component}
+              state={this.state}
+              withImport={importModules}
+            />
           </Code>
         </Panel>
       </StoryContainer>
@@ -93,7 +86,7 @@ class ComponentPanel extends React.Component {
 
 ComponentPanel.propTypes = {
   importModules: PropTypes.string.isRequired,
-  component: PropTypes.instanceOf(Object).isRequired,
+  component: PropTypes.instanceOf(Object).isRequired
 };
 
 export default ComponentPanel;

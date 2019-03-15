@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import StoryContainer from '../StoryContainer';
 import Title from '../Title';
+import ViewOnRemote from '../ViewOnRemote';
+import Colors from '../../ui/Colors';
 
 const HeadingWrapper = styled.div`
-  background-color: rgb(243, 243, 245);
+  position: relative;
+  background-color: ${Colors.grey.athens};
   padding: 0;
 `;
 
@@ -19,7 +22,6 @@ const Image = styled.img`
   margin-right:20px;
 `;
 
-
 const Heading = ({ name, title, image, children }) => (
   <HeadingWrapper>
     <StoryContainer>
@@ -28,6 +30,7 @@ const Heading = ({ name, title, image, children }) => (
       {title || name}
       </Title>
       <StyledP>{children}</StyledP>
+      {name && <ViewOnRemote name={name} />}
     </StoryContainer>
   </HeadingWrapper>
 );

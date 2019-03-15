@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "main": "dist/index.js",
   "dependencies": {
+    "@catho/quantum": "../quantum/dist/",
     "react-copy-to-clipboard": "^5.0.1",
     "react-highlight": "^0.12.0",
     "react-markdown": "^4.0.6",

@@ -1,13 +1,41 @@
 /* eslint-disable */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Select from '../Select';
-import Input from '../Input';
-import Table from '../Table';
-import Checkbox from '../Checkbox';
+import { Input, Checkbox } from '@catho/quantum';
+import Title from '../Title';
 import Colors from '../../ui/Colors';
+
+const PropertiesWrapper = styled.div`
+  padding: 0px 25px 25px 25px;
+`;
+
+const MainTitle = styled(Title)`
+  padding: 0;
+  margin: 0 0 25px 0;
+`;
+
+const CodeBlock = styled.pre`
+  background-color: ${Colors.grey.light};
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 85%;
+  margin-top: 0;
+  padding: 2px 5px;
+`;
+
+const IndentSpan = styled.span`
+  white-space: pre;
+`;
+
+const PropsRow = styled.tr`
+  padding: 15px;
+`;
+
+const PropsData = styled.td`
+  padding: 15px 0;
+  border: 0;
+`;
 
 const removeQuotes = str => str.replace(/'/g, '');
 
@@ -49,7 +77,7 @@ class AutoProps extends React.Component {
       number: value => (Number.isNaN(value) ? 0 : Number(value)),
       text: value => (value ? String(value) : ''),
       checkbox: value => Boolean(value),
-      default: value => value,
+      default: value => value
     };
 
     value = parsedValue[type](value);
@@ -84,27 +112,28 @@ class AutoProps extends React.Component {
           });
 
           return (
-            <Select
-              onChange={e =>
-                this.handleChange(e, {
-                  name: propName,
-                  value: e.target.value,
-                })
-              }
-              defaultValue={propValue}
-              name={propName}
-              path={propPath}
-            >
-              {options.map(option => {
-                return (
-                  <option key={option.key} value={option.value}>
-                    {option.text}
-                  </option>
-                );
-              })}
-            </Select>
+            // <Select
+            //   onChange={e =>
+            //     this.handleChange(e, {
+            //       name: propName,
+            //       value: e.target.value
+            //     })
+            //   }
+            //   defaultValue={propValue}
+            //   name={propName}
+            //   path={propPath}
+            // >
+            //   {options.map(option => {
+            //     return (
+            //       <option key={option.key} value={option.value}>
+            //         {option.text}
+            //       </option>
+            //     );
+            //   })}
+            // </Select>
+            'waiting for dropdown'
           );
-        },
+        }
       },
       {
         type: ['bool'],
@@ -115,14 +144,14 @@ class AutoProps extends React.Component {
               onChange={e =>
                 this.handleChange(e, {
                   name: propName,
-                  value: e.target.checked,
+                  value: e.target.checked
                 })
               }
               name={propName}
               path={propPath}
             />
           );
-        },
+        }
       },
       {
         type: ['string', 'number'],
@@ -133,7 +162,7 @@ class AutoProps extends React.Component {
               onChange={e =>
                 this.handleChange(e, {
                   name: propName,
-                  value: e.target.value,
+                  value: e.target.value
                 })
               }
               name={propName}
@@ -141,7 +170,7 @@ class AutoProps extends React.Component {
               value={propValue}
             />
           );
-        },
+        }
       },
       {
         type: ['shape'],
@@ -153,14 +182,14 @@ class AutoProps extends React.Component {
           component = component.substring(0, component.length - 2) + ` }`;
 
           return component;
-        },
+        }
       },
       {
         type: ['default'],
         controller: (propPath, propName, { name, value }) => {
           return `Type not yet implemented (${name})`;
-        },
-      },
+        }
+      }
     ];
 
     const componentType = propControllers
@@ -237,57 +266,30 @@ class AutoProps extends React.Component {
     const {
       component: {
         type: {
-          __docgenInfo: { props },
-        },
-      },
+          __docgenInfo: { props }
+        }
+      }
     } = this.props;
     const propRows = this.generateRows(props);
 
     return (
-      <React.Fragment>
-        <Table>
+      <PropertiesWrapper>
+        <MainTitle as="h2">Properties</MainTitle>
+        <table>
           <tbody>
             {propRows.map(row => {
               return row;
             })}
           </tbody>
-        </Table>
-      </React.Fragment>
+        </table>
+      </PropertiesWrapper>
     );
   }
 }
 
-const CodeBlock = styled.pre`
-  background-color: ${Colors.grey.light};
-  border-radius: 3px;
-  display: inline-block;
-  font-size: 85%;
-  margin-top: 0;
-  padding: 2px 5px;
-`;
-
-const IndentSpan = styled.span`
-  white-space: pre;
-`;
-
-const PropsRow = styled.tr`
-  padding: 15px;
-  &:nth-child(even) {
-    background: ${Colors.grey.light};
-  }
-  &:nth-child(odd) {
-    background: ${Colors.white};
-  }
-`;
-
-const PropsData = styled.td`
-  padding: 15px;
-  border: 0;
-`;
-
 AutoProps.propTypes = {
   component: PropTypes.instanceOf(Object).isRequired,
-  changeState: PropTypes.func.isRequired,
+  changeState: PropTypes.func.isRequired
 };
 
 export default AutoProps;

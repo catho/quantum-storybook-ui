@@ -2,51 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SimpleHighlight from '../SimpleHighlight';
-import Colors from '../../ui/Colors';
+import Title from '../Title';
 
-const ScrollWrapper = styled.div`
-  position: relative;
-  padding-top: 30px;
-  background-color: ${Colors.grey.light};
-  box-shadow: 0px 6px 25px 0px ${Colors.hexToRgba(Colors.black, 0.3)};
-`;
-
-const CodeBlock = styled.pre`
-  position: relative;
-  padding: 15px 50px 15px 15px;
-  font-size: 14px;
-
-  overflow-x: auto;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: ${Colors.hexToRgba(Colors.black, 0.3)};
-    border-radius: 5px;
-  }
-`;
-
-const WindowControlsWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 15px;
-`;
-
-const WindowControl = styled.div`
-  width: 12px;
-  height: 12px;
-  display: inline-block;
-  border-radius: 50%;
-  margin-right: 10px;
-  ${({ color }) => color && `background-color: ${color};`};
+const MainTitle = styled(Title)`
+  padding: 0;
+  margin: 25px 0;
 `;
 
 const formatJSON = (key, value) => {
@@ -73,7 +33,7 @@ const renderPropValue = (propValue, indentation) => {
     string: prop => `"${prop}"`,
     number: prop => `{${prop}}`,
     object: prop => `{${jsonStr(prop, indentation)}}`,
-    instanceOf: prop => `{${prop}}`,
+    instanceOf: prop => `{${prop}}`
   };
 
   const fn = types[typeof propValue];
@@ -122,17 +82,20 @@ const componentToString = (component, state, level = 0) => {
 };
 
 const msg = importModules =>
-  `import ${'{'} ${importModules} ${'}'} from '@cathodevel/quantum';\n\n`;
+  `import ${'{'} ${importModules} ${'}'} from '@catho/quantum';\n\n`;
 
 const CodeExample = ({ component, state, code, withImport }) => {
   const codeStr =
     code || componentToString(component, state || component.props);
 
   return (
-    <React.Fragment>
-      {withImport && msg(withImport)}
-      <SimpleHighlight>{codeStr}</SimpleHighlight>
-    </React.Fragment>
+    <>
+      <MainTitle as="h2">Importing and using</MainTitle>
+      <SimpleHighlight>
+        {withImport && msg(withImport)}
+        {codeStr}
+      </SimpleHighlight>
+    </>
   );
 };
 
@@ -141,7 +104,7 @@ CodeExample.defaultProps = {
   showTitle: true,
   withImport: '',
   state: null,
-  component: {},
+  component: {}
 };
 
 CodeExample.propTypes = {
@@ -149,7 +112,7 @@ CodeExample.propTypes = {
   state: PropTypes.instanceOf(Object),
   code: PropTypes.string,
   showTitle: PropTypes.bool,
-  withImport: PropTypes.string,
+  withImport: PropTypes.string
 };
 
 export default CodeExample;
