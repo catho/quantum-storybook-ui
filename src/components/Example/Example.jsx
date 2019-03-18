@@ -14,48 +14,20 @@ const Code = styled.div`
   margin-bottom: 20px;
 `;
 
-class Example extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-    };
-  }
-
-  handleClick = () => {
-    const { show } = this.state;
-    this.setState({ show: !show });
-  };
-
-  render() {
-    const { component: Component, title, importModules, code } = this.props;
-    const { show } = this.state;
-
-    return (
-      <React.Fragment>
-        <h3>
-          {title}{' '}
-          <Small onClick={this.handleClick}>
-            {show ? 'Hide' : 'Show'} code
-          </Small>
-        </h3>
-
-        <Code>
-          {show && (
-            <CodeExample
-              code={code}
-              withImport={importModules}
-              showTitle={false}
-              component={Component}
-            />
-          )}
-        </Code>
-
-        {Component}
-      </React.Fragment>
-    );
-  }
-}
+const Example = ({ component: Component, title, importModules, code }) => (
+  <>
+    {Component}
+    <h3>{title}</h3>
+    <Code>
+      <CodeExample
+        code={code}
+        withImport={importModules}
+        showTitle={false}
+        component={Component}
+      />
+    </Code>
+  </>
+);
 
 Example.defaultProps = {
   code: '',

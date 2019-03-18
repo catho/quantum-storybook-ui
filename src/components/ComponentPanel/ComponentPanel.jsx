@@ -4,28 +4,28 @@ import styled from 'styled-components';
 import AutoProps from '../AutoProps';
 import LivePreview from '../LivePreview';
 import CodeExample from '../CodeExample';
-import HowToImport from '../HowToImport';
+import StoryContainer from '../StoryContainer';
 
 const Panel = styled.main`
   display: grid;
   grid-template-areas:
-    'import import'
     'props preview'
     'props code';
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 110px 0fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 1fr 2fr;
+  grid-row-gap: 0px;
+  grid-column-gap: 15px;
+  margin-top: 90px;
 `;
 
-const Import = styled.div`
-  grid-area: import;
-`;
 const Props = styled.div`
   grid-area: props;
 `;
+
 const Preview = styled.div`
   grid-area: preview;
 `;
+
 const Code = styled.div`
   grid-area: code;
 `;
@@ -35,7 +35,7 @@ class ComponentPanel extends React.Component {
     super(props);
 
     const {
-      component: { props: componentProps },
+      component: { props: componentProps }
     } = props;
     this.state = componentProps;
   }
@@ -43,7 +43,7 @@ class ComponentPanel extends React.Component {
   handleChange = newState => {
     const state = {
       ...this.state,
-      ...newState,
+      ...newState
     };
 
     this.setState(state);
@@ -53,38 +53,40 @@ class ComponentPanel extends React.Component {
     const { component: Component, importModules } = this.props;
 
     return (
-      <Panel>
-        <Import>
-          <HowToImport importModules={importModules} />
-        </Import>
+      <StoryContainer>
+        <Panel>
+          <Props>
+            <AutoProps
+              component={Component}
+              state={this.state}
+              changeState={this.handleChange}
+            />
+          </Props>
 
-        <Props>
-          <AutoProps
-            component={Component}
-            state={this.state}
-            changeState={this.handleChange}
-          />
-        </Props>
+          <Preview>
+            <LivePreview
+              component={Component}
+              state={this.state}
+              onChange={this.handleChange}
+            />
+          </Preview>
 
-        <Preview>
-          <LivePreview
-            component={Component}
-            state={this.state}
-            onChange={this.handleChange}
-          />
-        </Preview>
-
-        <Code>
-          <CodeExample component={Component} state={this.state} />
-        </Code>
-      </Panel>
+          <Code>
+            <CodeExample
+              component={Component}
+              state={this.state}
+              withImport={importModules}
+            />
+          </Code>
+        </Panel>
+      </StoryContainer>
     );
   }
 }
 
 ComponentPanel.propTypes = {
   importModules: PropTypes.string.isRequired,
-  component: PropTypes.instanceOf(Object).isRequired,
+  component: PropTypes.instanceOf(Object).isRequired
 };
 
 export default ComponentPanel;

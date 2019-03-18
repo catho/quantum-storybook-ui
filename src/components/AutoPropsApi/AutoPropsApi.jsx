@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import Title from '../Title';
+import Table from '../Table';
+import StoryContainer from '../StoryContainer';
 
 const wrap = name => children => (
   <span>
@@ -46,7 +48,7 @@ const renderPropType = (type = {}) => {
             <code>{removeQuotes(v.value)}</code>
             {allValues[i + 1] && ', '}
           </span>
-        )),
+        ))
       ),
 
     union: value =>
@@ -56,7 +58,7 @@ const renderPropType = (type = {}) => {
             <code>{renderPropType(v)}</code>
             {allValues[i + 1] && ', '}
           </span>
-        )),
+        ))
       ),
 
     shape: value =>
@@ -75,7 +77,7 @@ const renderPropType = (type = {}) => {
                 )}
               </li>
             ))}
-        </ul>,
+        </ul>
       ),
 
     arrayOf: value => wrap('arrayOf')(renderPropType(value)),
@@ -89,12 +91,12 @@ const renderPropType = (type = {}) => {
 };
 
 const AutoPropsApi = ({ component: Component, title, ignoredProps }) => (
-  <React.Fragment>
-    <Title>{title || 'Available props'}</Title>
+  <StoryContainer>
+    <Title as="h2">{title || 'Available props'}</Title>
     {Component.__docgenInfo && (
       <ReactMarkdown source={Component.__docgenInfo.description} />
     )}
-    <table className="bordered">
+    <Table>
       <thead>
         <tr>
           <th>Name</th>
@@ -122,8 +124,8 @@ const AutoPropsApi = ({ component: Component, title, ignoredProps }) => (
               </tr>
             ))}
       </tbody>
-    </table>
-  </React.Fragment>
+    </Table>
+  </StoryContainer>
 );
 
 AutoPropsApi.defaultProps = {

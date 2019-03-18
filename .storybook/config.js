@@ -1,12 +1,11 @@
 import { configure, addDecorator } from '@storybook/react';
-import Frame from '../lib/components/Frame';
+import GlobalStyle from '../src/components/GlobalStyle';
 
+addDecorator(GlobalStyle);
 const stories = require.context('../stories', false, /.story.jsx?$/);
 
 function loadStories() {
   stories.keys().map(stories);
 }
-
-addDecorator(Frame);
 
 configure(loadStories, module);

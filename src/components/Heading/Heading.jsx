@@ -1,37 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Atom from '../../assets/images/atom.svg';
-import GitlabLink from '../GitlabLink';
+import StoryContainer from '../StoryContainer';
+import Title from '../Title';
+import ViewOnRemote from '../ViewOnRemote';
+import Colors from '../../ui/Colors';
 
-const Title = styled.h1`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  text-align: left;
-  padding: 15px 0;
-  margin: 0;
-  font-size: 46px;
-  font-weight: 300;
+const HeadingWrapper = styled.div`
+  position: relative;
+  background-color: ${Colors.grey.athens};
+  padding: 0;
+`;
 
-  img {
-    margin-right: 10px;
-  }
+const StyledP = styled.p`
+  font-size: 17px;
+  letter-spacing: initial;
+  line-height: initial;
+`;
+
+const Image = styled.img`
+  margin-right: 20px;
 `;
 
 const Heading = ({ name, title, image, children }) => (
-  <React.Fragment>
-    <Title>
-      {image && <img alt={title} src={image} width="60" height="60" />}
-      {title || `<${name} />`}
-      {name && <GitlabLink name={name} />}
-    </Title>
-    {children}
-  </React.Fragment>
+  <HeadingWrapper>
+    <StoryContainer>
+      <Title>
+      {image && <Image alt={title} src={image} width="50" height="50" />}
+      {title || name}
+      </Title>
+      <StyledP>{children}</StyledP>
+      {name && <ViewOnRemote name={name} />}
+    </StoryContainer>
+  </HeadingWrapper>
 );
 
 Heading.defaultProps = {
-  image: Atom,
   name: '',
   title: '',
 };
@@ -43,7 +47,7 @@ Heading.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]).isRequired,
+  ]),
 };
 
 export default Heading;
