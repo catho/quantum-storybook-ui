@@ -1,6 +1,21 @@
 {
-  "name": "@catho-private/quantum-storybook-ui",
-  "version": "0.1.0",
+  "name": "@catho/quantum-storybook-ui",
+  "version": "1.0.0",
+  "private": false,
+  "keywords": [
+    "catho",
+    "react",
+    "components",
+    "style",
+    "guide",
+    "quantum"
+  ],
+  "author": "Catho",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catho/quantum-storybook-ui.git"
+  },
   "main": "dist/index.js",
   "dependencies": {
     "react-copy-to-clipboard": "^5.0.1",
