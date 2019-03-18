@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Input, Checkbox } from '@catho/quantum';
+// import { Input, Checkbox } from '@catho/quantum';
 import Title from '../Title';
 import Colors from '../../ui/Colors';
 
@@ -28,12 +28,10 @@ const IndentSpan = styled.span`
   white-space: pre;
 `;
 
-const PropsRow = styled.tr`
-  padding: 15px;
-`;
+const PropsRow = styled.tr``;
 
 const PropsData = styled.td`
-  padding: 15px 0;
+  padding: 15px 15px;
   border: 0;
 `;
 
@@ -111,65 +109,67 @@ class AutoProps extends React.Component {
             return options;
           });
 
-          return (
-            // <Select
-            //   onChange={e =>
-            //     this.handleChange(e, {
-            //       name: propName,
-            //       value: e.target.value
-            //     })
-            //   }
-            //   defaultValue={propValue}
-            //   name={propName}
-            //   path={propPath}
-            // >
-            //   {options.map(option => {
-            //     return (
-            //       <option key={option.key} value={option.value}>
-            //         {option.text}
-            //       </option>
-            //     );
-            //   })}
-            // </Select>
-            'waiting for dropdown'
-          );
+          return;
+          // (
+          //   <Select
+          //     onChange={e =>
+          //       this.handleChange(e, {
+          //         name: propName,
+          //         value: e.target.value
+          //       })
+          //     }
+          //     defaultValue={propValue}
+          //     name={propName}
+          //     path={propPath}
+          //   >
+          //     {options.map(option => {
+          //       return (
+          //         <option key={option.key} value={option.value}>
+          //           {option.text}
+          //         </option>
+          //       );
+          //     })}
+          //   </Select>
+          // );
         }
       },
       {
         type: ['bool'],
         controller: (propPath, propName, { name }) => {
-          return (
-            <Checkbox
-              checked={propValue}
-              onChange={e =>
-                this.handleChange(e, {
-                  name: propName,
-                  value: e.target.checked
-                })
-              }
-              name={propName}
-              path={propPath}
-            />
-          );
+          return;
+          // (
+          //   <Checkbox
+          //     checked={propValue}
+          //     onChange={e =>
+          //       this.handleChange(e, {
+          //         name: propName,
+          //         value: e.target.checked
+          //       })
+          //     }
+          //     name={propName}
+          //     path={propPath}
+          //   />
+          // );
         }
       },
       {
         type: ['string', 'number'],
         controller: (propPath, propName, { name }) => {
-          return (
-            <Input
-              type={name == 'string' ? 'text' : name}
-              onChange={e =>
-                this.handleChange(e, {
-                  name: propName,
-                  value: e.target.value
-                })
-              }
-              name={propName}
-              path={propPath}
-              value={propValue}
-            />
-          );
+          return;
+          // (
+          //   <Input
+          //     type={name == 'string' ? 'text' : name}
+          //     onChange={e =>
+          //       this.handleChange(e, {
+          //         name: propName,
+          //         value: e.target.value
+          //       })
+          //     }
+          //     name={propName}
+          //     path={propPath}
+          //     value={propValue}
+          //   />
+          // );
         }
       },
       {

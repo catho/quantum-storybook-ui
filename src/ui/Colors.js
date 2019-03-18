@@ -6,6 +6,9 @@ class Colors {
     strong: '#526977',
     athens: '#f3f3f5'
   };
+
+
+
   static blue = {
     light: '#03a9f4',
     sanjuan: '#294661',

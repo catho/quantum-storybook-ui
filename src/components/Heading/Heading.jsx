@@ -19,7 +19,7 @@ const StyledP = styled.p`
 `;
 
 const Image = styled.img`
-  margin-right:20px;
+  margin-right: 20px;
 `;
 
 const Heading = ({ name, title, image, children }) => (
