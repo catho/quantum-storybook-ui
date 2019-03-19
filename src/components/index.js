@@ -4,7 +4,7 @@ export { default as AutoPropsApi } from './AutoPropsApi';
 export { default as CodeExample } from './CodeExample';
 export { default as ComponentPanel } from './ComponentPanel';
 export { default as Example } from './Example';
-export { default as GlobalStyle } from './GlobalStyle';
+export { default as UiStyle } from './UiStyle';
 export { default as Heading } from './Heading';
 export { default as LivePreview } from './LivePreview';
 export { default as SimpleHighlight } from './SimpleHighlight';

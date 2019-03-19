@@ -76,6 +76,7 @@ class ComponentPanel extends React.Component {
               component={Component}
               state={this.state}
               withImport={importModules}
+              title='Importing and using'
             />
           </Code>
         </Panel>

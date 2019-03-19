@@ -1,7 +1,7 @@
 import { configure, addDecorator } from '@storybook/react';
-import GlobalStyle from '../src/components/GlobalStyle';
+import UiStyle from '../src/components/UiStyle';
 
-addDecorator(GlobalStyle);
+addDecorator(UiStyle);
 const stories = require.context('../stories', false, /.story.jsx?$/);
 
 function loadStories() {
@@ -9,3 +9,4 @@ function loadStories() {
 }
 
 configure(loadStories, module);
+

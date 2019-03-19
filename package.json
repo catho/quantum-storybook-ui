@@ -1,6 +1,6 @@
 {
   "name": "@catho/quantum-storybook-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "keywords": [
     "catho",
@@ -18,11 +18,8 @@
   },
   "main": "dist/index.js",
   "dependencies": {
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-highlight": "^0.12.0",
+    "@catho/quantum": "../quantum/dist/",
     "react-markdown": "^4.0.6",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^0.84.0"
   },
   "peerDependencies": {
     "react": ">= 16",

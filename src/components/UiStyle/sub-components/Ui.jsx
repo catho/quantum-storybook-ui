@@ -1,14 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
-import Colors from '../../../ui/Colors';
 
-const Typography = createGlobalStyle`
+const Ui = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,600i,700');
 
   body {
-    font-family: 'Nunito Sans', sans-serif;
-    color: ${Colors.blue['bayoux']};
-    font-size: 17px;
+    margin: 0;
+    padding: 0 0 90px 0;
   }
 
   pre {
@@ -25,4 +22,4 @@ const Typography = createGlobalStyle`
   }
 `;
 
-export default Typography;
+export default Ui;

@@ -8,6 +8,8 @@ const HightlightWrapper = styled.pre`
   padding: 10px;
   color: ${({ fontColor }) => fontColor};
   background-color: ${({ backgroundColor }) => backgroundColor};
+  margin: 0;
+  overflow: auto;
 
   code {
     background-color: transparent;
