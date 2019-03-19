@@ -84,13 +84,13 @@ const componentToString = (component, state, level = 0) => {
 const msg = importModules =>
   `import ${'{'} ${importModules} ${'}'} from '@catho/quantum';\n\n`;
 
-const CodeExample = ({ component, state, code, withImport }) => {
+const CodeExample = ({ component, state, code, withImport, title }) => {
   const codeStr =
     code || componentToString(component, state || component.props);
 
   return (
     <>
-      <MainTitle as="h2">Importing and using</MainTitle>
+      {title && <MainTitle as="h2">{title}</MainTitle>}
       <SimpleHighlight>
         {withImport && msg(withImport)}
         {codeStr}
@@ -101,7 +101,7 @@ const CodeExample = ({ component, state, code, withImport }) => {
 
 CodeExample.defaultProps = {
   code: '',
-  showTitle: true,
+  title: '',
   withImport: '',
   state: null,
   component: {}
@@ -111,7 +111,7 @@ CodeExample.propTypes = {
   component: PropTypes.instanceOf(Object),
   state: PropTypes.instanceOf(Object),
   code: PropTypes.string,
-  showTitle: PropTypes.bool,
+  title: PropTypes.string,
   withImport: PropTypes.string
 };
 

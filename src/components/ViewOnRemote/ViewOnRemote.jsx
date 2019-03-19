@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CodeSign from '../../assets/images/code.svg';
-// import { Tooltip } from '@catho/quantum';
+import { Tooltip } from '@catho/quantum';
 
 const baseUrl = 'https://github.com/catho/quantum/tree/master/components/';
 
@@ -29,9 +29,9 @@ const Link = styled.a`
 
 const ViewOnRemote = ({ name }) => (
   <Link href={`${baseUrl}${name}`} target="_blank">
+    <Tooltip text="View Source" placement="left">
       <CodeIco src={CodeSign} />
-    {/* <Tooltip text="View Source" placement="left">
-    </Tooltip> */}
+    </Tooltip>
   </Link>
 );
 

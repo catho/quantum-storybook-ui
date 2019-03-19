@@ -16,7 +16,7 @@ import {
   Title,
   StoryContainer,
   SimpleHighlight,
-  GlobalStyle
+  UiStyle
 } from './components';
 
 export {
@@ -37,5 +37,5 @@ export {
   Title,
   StoryContainer,
   SimpleHighlight,
-  GlobalStyle
+  UiStyle
 };

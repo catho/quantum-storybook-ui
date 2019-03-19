@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { Input, Checkbox } from '@catho/quantum';
+import { Input, Checkbox, Dropdown } from '@catho/quantum';
 import Title from '../Title';
 import Colors from '../../ui/Colors';
 
@@ -105,71 +105,60 @@ class AutoProps extends React.Component {
 
           value.map((v, i) => {
             const str = removeQuotes(v.value);
-            options.push({ key: i, value: str, text: str });
+            options.push({ key: i, value: str, label: str });
             return options;
           });
 
-          return;
-          // (
-          //   <Select
-          //     onChange={e =>
-          //       this.handleChange(e, {
-          //         name: propName,
-          //         value: e.target.value
-          //       })
-          //     }
-          //     defaultValue={propValue}
-          //     name={propName}
-          //     path={propPath}
-          //   >
-          //     {options.map(option => {
-          //       return (
-          //         <option key={option.key} value={option.value}>
-          //           {option.text}
-          //         </option>
-          //       );
-          //     })}
-          //   </Select>
-          // );
+          return (
+            <Dropdown
+              items={options}
+              name={propName}
+              path={propPath}
+              onChange={e =>
+                this.handleChange(e, {
+                  name: propName,
+                  value: e.value
+                })
+              }
+            />
+          );
         }
       },
       {
         type: ['bool'],
         controller: (propPath, propName, { name }) => {
-          return;
-          // (
-          //   <Checkbox
-          //     checked={propValue}
-          //     onChange={e =>
-          //       this.handleChange(e, {
-          //         name: propName,
-          //         value: e.target.checked
-          //       })
-          //     }
-          //     name={propName}
-          //     path={propPath}
-          //   />
-          // );
+          return (
+            <Checkbox
+              checked={propValue}
+              onChange={e =>
+                this.handleChange(e, {
+                  name: propName,
+                  value: e.target.checked
+                })
+              }
+              name={propName}
+              path={propPath}
+            />
+          );
         }
       },
       {
         type: ['string', 'number'],
         controller: (propPath, propName, { name }) => {
-          return;
-          // (
-          //   <Input
-          //     type={name == 'string' ? 'text' : name}
-          //     onChange={e =>
-          //       this.handleChange(e, {
-          //         name: propName,
-          //         value: e.target.value
-          //       })
-          //     }
-          //     name={propName}
-          //     path={propPath}
-          //     value={propValue}
-          //   />
-          // );
+          return (
+            <Input
+              type={name == 'string' ? 'text' : name}
+              onChange={e =>
+                this.handleChange(e, {
+                  name: propName,
+                  value: e.target.value
+                })
+              }
+              name={propName}
+              path={propPath}
+              value={propValue}
+            />
+          );
         }
       },
       {
