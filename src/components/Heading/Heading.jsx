@@ -47,8 +47,7 @@ Heading.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ]),
-  size: PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
+  ])
 };
 
 export default Heading;

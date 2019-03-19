@@ -1,8 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { Heading, SimpleHighlight, AutoExample } from '../src/components';
-import { Button } from '@catho/quantum';
+import { Heading, AutoExample } from '../src/components';
 
 
 storiesOf('Title', module).add('default', () => (
