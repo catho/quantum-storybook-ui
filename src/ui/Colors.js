@@ -7,8 +7,6 @@ class Colors {
     athens: '#f3f3f5'
   };
 
-
-
   static blue = {
     light: '#03a9f4',
     sanjuan: '#294661',
@@ -18,6 +16,10 @@ class Colors {
   };
   static black = '#000000';
   static white = '#FFFFFF';
+
+  static pink = {
+    amaranth: '#e01e5a',
+  }
 
   static hexToRgba(color, opacity) {
     const R = parseInt(color.substring(1, 3), 16);

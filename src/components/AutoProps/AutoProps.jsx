@@ -58,6 +58,10 @@ function changePropValue(obj, path, value) {
   return value ? (obj[path[i]] = value) : obj[path[i]];
 }
 
+const NotImplementedType = styled.code`
+  color: ${Colors.pink.amaranth}
+`;
+
 class AutoProps extends React.Component {
   constructor(props) {
     super(props);
@@ -111,6 +115,7 @@ class AutoProps extends React.Component {
 
           return (
             <Dropdown
+              selectedItem={propValue}
               items={options}
               name={propName}
               path={propPath}
@@ -129,7 +134,7 @@ class AutoProps extends React.Component {
         controller: (propPath, propName, { name }) => {
           return (
             <Checkbox
-              checked={propValue}
+              checked={propValue ? propValue : false}
               onChange={e =>
                 this.handleChange(e, {
                   name: propName,
@@ -176,7 +181,7 @@ class AutoProps extends React.Component {
       {
         type: ['default'],
         controller: (propPath, propName, { name, value }) => {
-          return `Type not yet implemented (${name})`;
+          return <NotImplementedType>{name}</NotImplementedType>;
         }
       }
     ];

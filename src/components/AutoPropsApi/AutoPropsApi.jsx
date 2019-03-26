@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import styled from 'styled-components';
+import Colors from '../../ui/Colors';
 import Title from '../Title';
 import Table from '../Table';
 import StoryContainer from '../StoryContainer';
@@ -26,41 +28,33 @@ const filterIgnoredProps = (prop, ignoreds) => {
   return !ignoreds.includes(prop);
 };
 
-const removeQuotes = str => {
-  // "''"
-  let withoutQuotes = str.replace(/'/g, '');
+const removeQuotes = str => str.replace(/'/g, '');
 
-  if (withoutQuotes) {
-    withoutQuotes = <code>{withoutQuotes}</code>;
-  }
-
-  return withoutQuotes;
-};
+const PropertieType = styled.code`
+  color: ${Colors.pink.amaranth}
+`;
 
 const renderPropType = (type = {}) => {
   const typeHandlers = {
     custom: () => wrap('custom')(),
-
     enum: value =>
       wrap('oneOf')(
         value.map((v, i, allValues) => (
           <span key={v.value}>
-            <code>{removeQuotes(v.value)}</code>
+            <PropertieType>{removeQuotes(v.value)}</PropertieType>
             {allValues[i + 1] && ', '}
           </span>
         ))
       ),
-
     union: value =>
       wrap('oneOfType')(
         value.map((v, i, allValues) => (
           <span key={v.name.repeat(i)}>
-            <code>{renderPropType(v)}</code>
+            <PropertieType>{renderPropType(v)}</PropertieType>
             {allValues[i + 1] && ', '}
           </span>
         ))
       ),
-
     shape: value =>
       wrap('shape')(
         <ul>
@@ -79,7 +73,6 @@ const renderPropType = (type = {}) => {
             ))}
         </ul>
       ),
-
     arrayOf: value => wrap('arrayOf')(renderPropType(value)),
   };
 
@@ -87,7 +80,7 @@ const renderPropType = (type = {}) => {
     return (typeHandlers[type.name] || failSafe(type))(type.value);
   }
 
-  return <span>{type.name}</span>;
+  return <PropertieType>{type.name}</PropertieType>;
 };
 
 const AutoPropsApi = ({ component: Component, title, ignoredProps }) => (
