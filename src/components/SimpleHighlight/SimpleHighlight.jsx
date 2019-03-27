@@ -30,7 +30,10 @@ SimpleHighlight.defaultProps = {
 SimpleHighlight.propTypes = {
   backgroundColor: PropTypes.string,
   fontColor: PropTypes.string,
-  children: PropTypes.string.isRequired
+  children: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.array.isRequired
+  ])
 };
 
 export default SimpleHighlight;
