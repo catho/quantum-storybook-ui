@@ -30,7 +30,7 @@ const filterIgnoredProps = (prop, ignoreds) => {
 
 const removeQuotes = str => str.replace(/'/g, '');
 
-const PropertieType = styled.code`
+const PropertyType = styled.code`
   color: ${Colors.pink.amaranth}
 `;
 
@@ -41,7 +41,7 @@ const renderPropType = (type = {}) => {
       wrap('oneOf')(
         value.map((v, i, allValues) => (
           <span key={v.value}>
-            <PropertieType>{removeQuotes(v.value)}</PropertieType>
+            <PropertyType>{removeQuotes(v.value)}</PropertyType>
             {allValues[i + 1] && ', '}
           </span>
         ))
@@ -50,7 +50,7 @@ const renderPropType = (type = {}) => {
       wrap('oneOfType')(
         value.map((v, i, allValues) => (
           <span key={v.name.repeat(i)}>
-            <PropertieType>{renderPropType(v)}</PropertieType>
+            <PropertyType>{renderPropType(v)}</PropertyType>
             {allValues[i + 1] && ', '}
           </span>
         ))
@@ -80,7 +80,7 @@ const renderPropType = (type = {}) => {
     return (typeHandlers[type.name] || failSafe(type))(type.value);
   }
 
-  return <PropertieType>{type.name}</PropertieType>;
+  return <PropertyType>{type.name}</PropertyType>;
 };
 
 const AutoPropsApi = ({ component: Component, title, ignoredProps }) => (
