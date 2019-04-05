@@ -15,7 +15,7 @@ Quantum-storybook-ui is very easy to use and require almost no effort.
 It can be installed via npm or yarn.
 
 ```sh
-yarn add @catho/quantum
+yarn add @catho/quantum-storybook-ui
 ```
 Using the components will look something like
 
