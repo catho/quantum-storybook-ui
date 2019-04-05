@@ -1,68 +1,48 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# quantum-storybook-ui
 
-## Available Scripts
+A **Design System** is the complete set of design standards, documentation, and principles along with the toolkit (UI patterns and code components) to achieve those standards. Over time, these 'systems' are growing in popularity - a very popular one is [Quantum](https://catho.github.io/quantum/),
 
-In the project directory, you can run:
+Quantum uses Storybook, a development environment for UI components. It allows you to browse a component library, view the different states of each component, and interactively develop and test components.
 
-### `npm start`
+Through reflection patterns, this project is responsible for auto-generating docs and testable preview/code from component instance, meaning that docs never gets deprecated, they have short stories and beautiful documentation interface.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Usage
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Quantum-storybook-ui is very easy to use and require almost no effort.
 
-### `npm test`
+## Instalation
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It can be installed via npm or yarn.
 
-### `npm run build`
+```sh
+yarn add @catho/quantum
+```
+Using the components will look something like
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+import { AutoExample } from  '@catho/quantum-storybook-ui';
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Creating a story
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Creating a component story requires zero work.
+With ten or less lines of code (as you can see below), you can create a full documented component like this [Alert](https://catho.github.io/quantum/?selectedKind=Alert&selectedStory=Alert&full=0&addons=0&stories=1&panelRight=0)
+This doc never gets deprecated, even if the component changes.
 
-### `npm run eject`
+```js
+import { AutoExample } from  '@catho/quantum-storybook-ui';
+import { Alert } from  './components';
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+storiesOf('Alert', module).add('Alert', ()  => (
+<AutoExample
+  description={`description`}
+  component={Alert}
+  componentProps={{
+    children:  `This is awesome!`,
+    icon:  'face',
+    }}
+  />
+));
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Quantum-storybook-ui exports over 18 visual components that allow you customize your storybook looks too.
