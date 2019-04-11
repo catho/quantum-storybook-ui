@@ -22,8 +22,8 @@ const Image = styled.img`
   margin-right: 20px;
 `;
 
-const Heading = ({ name, title, image, children }) => (
-  <HeadingWrapper>
+const Heading = ({ name, title, image, children, ...rest }) => (
+  <HeadingWrapper {...rest}>
     <StoryContainer>
       <Title>
       {image && <Image alt={title} src={image} width="50" height="50" />}
