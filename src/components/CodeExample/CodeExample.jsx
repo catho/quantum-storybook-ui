@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SimpleHighlight from '../SimpleHighlight';
 import Title from '../Title';
+import { FORBIDDEN_PROPS } from '../shared';
 
 const MainTitle = styled(Title)`
   padding: 0;
@@ -45,7 +46,7 @@ function getProps(props, indentation) {
   const breakline = `\n${indentation}${spaces(INDENTATION_SIZE)}`;
 
   return Object.entries(props)
-    .filter(([name, value]) => value && !['style', 'children'].includes(name))
+    .filter(([name, value]) => value && !FORBIDDEN_PROPS.includes(name))
     .map(([prop, value], index) => {
       const propText =
         typeof value === 'boolean'

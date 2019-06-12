@@ -1,3 +1,3 @@
-const FORBIDDEN_PROPS = ['theme'];
+const FORBIDDEN_PROPS = ['theme', 'style', 'children'];
 
 export { FORBIDDEN_PROPS };
