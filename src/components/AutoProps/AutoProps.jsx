@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Input, Checkbox, Dropdown } from '@catho/quantum';
 import Title from '../Title';
 import Colors from '../../ui/Colors';
+import { FORBIDDEN_PROPS } from '../shared';
 
 const PropertiesWrapper = styled.div`
   padding: 0px 25px 25px 25px;
@@ -59,7 +60,7 @@ function changePropValue(obj, path, value) {
 }
 
 const NotImplementedType = styled.code`
-  color: ${Colors.pink.amaranth}
+  color: ${Colors.pink.amaranth};
 `;
 
 class AutoProps extends React.Component {
@@ -175,7 +176,11 @@ class AutoProps extends React.Component {
           });
           component = component.substring(0, component.length - 2) + ` }`;
 
-          return component;
+          return FORBIDDEN_PROPS.includes(propName) ? (
+            <NotImplementedType>{name}</NotImplementedType>
+          ) : (
+            component
+          );
         }
       },
       {
@@ -230,7 +235,7 @@ class AutoProps extends React.Component {
   parseShapes = (propPath, propName, { name: propType, value = null }) => {
     let propRows = [];
 
-    if (propType == 'shape') {
+    if (propType == 'shape' && !FORBIDDEN_PROPS.includes(propName)) {
       const path = Array.from(propPath);
       path.push(propName);
 
