@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Title from '../Title';
 
 const Canvas = styled.canvas`
-  /* background-color: rgba(0, 0, 0, 0.2); */
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +11,104 @@ const Canvas = styled.canvas`
   pointer-events: none;
 `;
 
-function canvas_arrow(ctx, fromx, fromy, tox, toy, text = '') {
+function drawLines(ctx, canvas, element, props) {
+  canvas.width = canvas.parentElement.offsetWidth;
+  canvas.height = canvas.parentElement.offsetHeight;
+
+  const x = element.offsetLeft;
+  const y = element.offsetTop;
+  const height = element.offsetHeight;
+  const width = element.offsetWidth;
+
+  const paddingLeft = Math.round(
+    parseFloat(getProperty(element, 'padding-left'))
+  );
+  const paddingRight = Math.round(
+    parseFloat(getProperty(element, 'padding-right'))
+  );
+  const paddingTop = Math.round(
+    parseFloat(getProperty(element, 'padding-top'))
+  );
+  const paddingBottom = Math.round(
+    parseFloat(getProperty(element, 'padding-bottom'))
+  );
+
+  const ARROW_DISTANCE_H = 14;
+  const ARROW_DISTANCE_V = 17;
+
+  const { spacing } = props.theme;
+
+  // Vertical
+  if (paddingLeft) {
+    const text = Object.keys(spacing)
+      .filter(name => spacing[name] === paddingLeft)
+      .join();
+    canvasText(
+      ctx,
+      x + paddingLeft,
+      y + height + ARROW_DISTANCE_H,
+      x,
+      y + height + ARROW_DISTANCE_H,
+      text
+    );
+    rectV({ ctx, x: x + paddingLeft, y, width, height });
+    rectV({ ctx, x, y, width, height });
+  }
+
+  if (paddingRight) {
+    const text = Object.keys(spacing)
+      .filter(name => spacing[name] === paddingLeft)
+      .join();
+    rectV({ ctx, x: x + width, y, width, height });
+    rectV({ ctx, x: x + width - paddingRight, y, width, height });
+
+    canvasText(
+      ctx,
+      x + width - paddingRight,
+      y + height + ARROW_DISTANCE_H,
+      x + width,
+      y + height + ARROW_DISTANCE_H,
+      text
+    );
+  }
+
+  // Horizontal
+  if (paddingTop) {
+    const text = Object.keys(spacing)
+      .filter(name => spacing[name] === paddingLeft)
+      .join();
+    rectH({ ctx, x: x, y: y + paddingTop, width, height });
+    rectH({ ctx, x: x, y, width, height });
+
+    canvasText(
+      ctx,
+      x - ARROW_DISTANCE_V,
+      y,
+      x - ARROW_DISTANCE_V,
+      y + paddingTop,
+      text
+    );
+  }
+
+  if (paddingBottom) {
+    const text = Object.keys(spacing)
+      .filter(name => spacing[name] === paddingLeft)
+      .join();
+    rectH({ ctx, x: x, y: y + height - paddingBottom, width, height });
+    rectH({ ctx, x: x, y: y + height, width, height });
+
+    canvasText(
+      ctx,
+      x - ARROW_DISTANCE_V,
+      y + height - paddingBottom,
+      x - ARROW_DISTANCE_V,
+      y + height,
+      text
+    );
+  }
+}
+
+function canvasText(ctx, fromx, fromy, tox, toy, text = '') {
   ctx.beginPath();
   ctx.strokeStyle = 'red';
   ctx.setLineDash([5, 2]);
@@ -49,7 +145,7 @@ function canvas_arrow(ctx, fromx, fromy, tox, toy, text = '') {
 }
 
 function rectV(props) {
-  const { ctx, x, y, width, height } = props;
+  const { ctx, x, y, height } = props;
   ctx.lineWidth = 1;
   ctx.strokeStyle = 'red';
   ctx.setLineDash([5, 2]);
@@ -64,7 +160,7 @@ function rectV(props) {
 }
 
 function rectH(props) {
-  const { ctx, x, y, width, height } = props;
+  const { ctx, x, y } = props;
   ctx.lineWidth = 1;
   ctx.strokeStyle = 'red';
   ctx.setLineDash([5, 2]);
@@ -77,93 +173,36 @@ function rectH(props) {
 }
 
 function getProperty(element, prop) {
-  return parseInt(window.getComputedStyle(element).getPropertyValue(prop));
+  return window.getComputedStyle(element).getPropertyValue(prop);
 }
 
-const CanvasComponent = ({ children }) => {
+function transformToMs(prop) {
+  return prop.endsWith('ms') ? parseFloat(prop) : parseFloat(prop) * 1000;
+}
+
+const CanvasComponent = ({ children, state }) => {
   const canvasRef = useRef(null);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
-    const ctx = canvasRef.current.getContext('2d');
     const {
       current: { firstChild: component }
     } = wrapperRef;
     const { current: canvas } = canvasRef;
+    const ctx = canvas.getContext('2d');
 
-    canvas.width = canvas.parentElement.offsetWidth;
-    canvas.height = canvas.parentElement.offsetHeight;
+    const animationDuration = transformToMs(
+      getProperty(component, 'transition-duration')
+    );
+    const animationDelay = transformToMs(
+      getProperty(component, 'transition-delay')
+    );
 
-    const x = component.offsetLeft;
-    const y = component.offsetTop;
-    const height = component.offsetHeight;
-    const width = component.offsetWidth;
-
-    const paddingLeft = getProperty(component, 'padding-left');
-    const paddingRight = getProperty(component, 'padding-right');
-    const paddingTop = getProperty(component, 'padding-top');
-    const paddingBottom = getProperty(component, 'padding-bottom');
-
-    const ARROW_DISTANCE_H = 14;
-    const ARROW_DISTANCE_V = 17;
-
-    // Vertical
-    if (paddingLeft) {
-      canvas_arrow(
-        ctx,
-        x + paddingLeft,
-        y + height + ARROW_DISTANCE_H,
-        x,
-        y + height + ARROW_DISTANCE_H,
-        'xsmall'
-      );
-      rectV({ ctx, x: x + paddingLeft, y, width, height });
-      rectV({ ctx, x, y, width, height });
-    }
-
-    if (paddingRight) {
-      rectV({ ctx, x: x + width, y, width, height });
-      rectV({ ctx, x: x + width - paddingRight, y, width, height });
-
-      canvas_arrow(
-        ctx,
-        x + width - paddingRight,
-        y + height + ARROW_DISTANCE_H,
-        x + width,
-        y + height + ARROW_DISTANCE_H,
-        'xsmall'
-      );
-    }
-
-    // Horizontal
-    if (paddingTop) {
-      rectH({ ctx, x: x, y: y + paddingTop, width, height });
-      rectH({ ctx, x: x, y, width, height });
-
-      canvas_arrow(
-        ctx,
-        x - ARROW_DISTANCE_V,
-        y,
-        x - ARROW_DISTANCE_V,
-        y + paddingTop,
-        'xsmall'
-      );
-    }
-
-    if (paddingBottom) {
-      rectH({ ctx, x: x, y: y + height - paddingBottom, width, height });
-      rectH({ ctx, x: x, y: y + height, width, height });
-
-      canvas_arrow(
-        ctx,
-        x - ARROW_DISTANCE_V,
-        y + height - paddingBottom,
-        x - ARROW_DISTANCE_V,
-        y + height,
-        'xsmall'
-      );
-    }
-  }, []);
+    setTimeout(
+      () => drawLines(ctx, canvas, component, children.props),
+      animationDuration + animationDelay
+    );
+  }, [state]);
 
   return (
     <>
@@ -212,7 +251,7 @@ const LivePreview = ({ component: { type: Component }, state, onChange }) => (
   <>
     <MainTitle as='h2'>Appearence</MainTitle>
     <Preview>
-      <CanvasComponent>
+      <CanvasComponent state={state}>
         <Component {...state} onChange={(e, data) => onChange(data)} />
       </CanvasComponent>
     </Preview>
