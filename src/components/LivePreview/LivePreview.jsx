@@ -38,7 +38,6 @@ function drawLines(ctx, canvas, element, props) {
 
   const { spacing } = props.theme;
 
-  // Vertical
   if (paddingLeft) {
     const text = Object.keys(spacing)
       .filter(name => spacing[name] === paddingLeft)
@@ -72,7 +71,6 @@ function drawLines(ctx, canvas, element, props) {
     );
   }
 
-  // Horizontal
   if (paddingTop) {
     const text = Object.keys(spacing)
       .filter(name => spacing[name] === paddingLeft)
@@ -123,7 +121,6 @@ function canvasText(ctx, fromx, fromy, tox, toy, text = '') {
 
   ctx.fillStyle = 'red';
 
-  // horizontal text
   if (fromy === toy) {
     ctx.fillText(
       text,
