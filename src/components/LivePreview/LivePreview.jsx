@@ -15,10 +15,18 @@ function drawLines(ctx, canvas, element, props) {
   canvas.width = canvas.parentElement.offsetWidth;
   canvas.height = canvas.parentElement.offsetHeight;
 
-  const x = element.offsetLeft;
-  const y = element.offsetTop;
-  const height = element.offsetHeight;
-  const width = element.offsetWidth;
+  const { x, y, width, height } = element.getBoundingClientRect();
+  const {
+    x: canvasX,
+    y: canvasY,
+    width: canvasWidth,
+    height: canvasHeight,
+  } = canvas.getBoundingClientRect();
+
+  // const x = element.offsetLeft;
+  // const y = element.offsetTop;
+  // const height = element.offsetHeight;
+  // const width = element.offsetWidth;
 
   const paddingLeft = Math.round(
     parseFloat(getProperty(element, 'padding-left'))
@@ -39,121 +47,40 @@ function drawLines(ctx, canvas, element, props) {
   const { spacing } = props.theme;
 
   if (paddingLeft) {
-    const text = Object.keys(spacing)
-      .filter(name => spacing[name] === paddingLeft)
-      .join();
-    canvasText(
-      ctx,
-      x + paddingLeft,
-      y + height + ARROW_DISTANCE_H,
-      x,
-      y + height + ARROW_DISTANCE_H,
-      text
-    );
-    rectV({ ctx, x: x + paddingLeft, y, width, height });
-    rectV({ ctx, x, y, width, height });
+    rect({ ctx, x: x - canvasX, y: y - canvasY, width: paddingLeft, height });
   }
 
   if (paddingRight) {
-    const text = Object.keys(spacing)
-      .filter(name => spacing[name] === paddingLeft)
-      .join();
-    rectV({ ctx, x: x + width, y, width, height });
-    rectV({ ctx, x: x + width - paddingRight, y, width, height });
-
-    canvasText(
+    rect({
       ctx,
-      x + width - paddingRight,
-      y + height + ARROW_DISTANCE_H,
-      x + width,
-      y + height + ARROW_DISTANCE_H,
-      text
-    );
+      x: x - canvasX + width - paddingRight,
+      y: y - canvasY,
+      width: paddingRight,
+      height,
+    });
   }
 
   if (paddingTop) {
-    const text = Object.keys(spacing)
-      .filter(name => spacing[name] === paddingLeft)
-      .join();
-    rectH({ ctx, x: x, y: y + paddingTop, width, height });
-    rectH({ ctx, x: x, y, width, height });
-
-    canvasText(
-      ctx,
-      x - ARROW_DISTANCE_V,
-      y,
-      x - ARROW_DISTANCE_V,
-      y + paddingTop,
-      text
-    );
+    rect({ ctx, x: x - canvasX, y: y - canvasY, width, height: paddingTop });
   }
 
   if (paddingBottom) {
-    const text = Object.keys(spacing)
-      .filter(name => spacing[name] === paddingLeft)
-      .join();
-    rectH({ ctx, x: x, y: y + height - paddingBottom, width, height });
-    rectH({ ctx, x: x, y: y + height, width, height });
-
-    canvasText(
+    rect({
       ctx,
-      x - ARROW_DISTANCE_V,
-      y + height - paddingBottom,
-      x - ARROW_DISTANCE_V,
-      y + height,
-      text
-    );
+      x: x - canvasX,
+      y: y - canvasY + height - paddingBottom,
+      width,
+      height: paddingBottom,
+    });
   }
 }
 
-function canvasText(ctx, fromx, fromy, tox, toy, text = '') {
-  ctx.beginPath();
-  ctx.strokeStyle = 'red';
-  ctx.setLineDash([5, 2]);
+function rect(props) {
+  const { ctx, x, y, width, height } = props;
 
-  ctx.font = '10px sans-serif';
-  ctx.moveTo(fromx, fromy);
-  ctx.lineTo(tox, toy);
-
-  const textLeft = tox < fromx;
-  const textWidth = ctx.measureText(text).width;
-  const textHeight = parseInt(ctx.font);
-
-  ctx.fillStyle = 'red';
-
-  if (fromy === toy) {
-    ctx.fillText(
-      text,
-      textLeft
-        ? fromx - textWidth / 2 - (fromx - tox) / 2
-        : fromx - textWidth / 2 + (tox - fromx) / 2,
-      toy + 34
-    );
-  } else {
-    ctx.fillText(
-      text,
-      tox - textWidth - 20,
-      toy + textHeight / 2 - (toy - fromy) / 2
-    );
-  }
-
-  ctx.stroke();
-  ctx.closePath();
-}
-
-function rectV(props) {
-  const { ctx, x, y, height } = props;
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = 'red';
-  ctx.setLineDash([5, 2]);
-
-  ctx.beginPath();
-
-  ctx.moveTo(x, y + height + 4);
-  ctx.lineTo(x, y + height + 24);
-  ctx.stroke();
-
-  ctx.closePath();
+  ctx.globalCompositeOperation = 'luminosity';
+  ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
+  ctx.fillRect(x, y, width, height);
 }
 
 function rectH(props) {
@@ -183,7 +110,7 @@ const CanvasComponent = ({ children, state }) => {
 
   useEffect(() => {
     const {
-      current: { firstChild: component }
+      current: { firstChild: component },
     } = wrapperRef;
     const { current: canvas } = canvasRef;
     const ctx = canvas.getContext('2d');
@@ -246,7 +173,7 @@ const Preview = styled.div`
 
 const LivePreview = ({ component: { type: Component }, state, onChange }) => (
   <>
-    <MainTitle as='h2'>Appearence</MainTitle>
+    <MainTitle as="h2">Appearence</MainTitle>
     <Preview>
       <CanvasComponent state={state}>
         <Component {...state} onChange={(e, data) => onChange(data)} />
@@ -258,7 +185,7 @@ const LivePreview = ({ component: { type: Component }, state, onChange }) => (
 LivePreview.propTypes = {
   state: PropTypes.instanceOf(Object).isRequired,
   component: PropTypes.instanceOf(Object).isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default LivePreview;
