@@ -43,7 +43,7 @@ const StyledButton = styled.button`
       large: `${xxxlarge}px`
     };
 
-    return `height: ${heights[size]};`;
+    /* return `height: ${heights[size]};`; */
   }}
 
   ${({
@@ -55,7 +55,7 @@ const StyledButton = styled.button`
     const paddings = {
       xsmall: `0 ${small}px`,
       small: `0 ${small}px`,
-      medium: `0 ${medium}px`,
+      medium: `${medium}px`,
       large: `0 ${medium}px`,
       xlarge: `0 ${medium}px`
     };

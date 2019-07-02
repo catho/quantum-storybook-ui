@@ -12,21 +12,8 @@ const Canvas = styled.canvas`
 `;
 
 function drawLines(ctx, canvas, element, props) {
-  canvas.width = canvas.parentElement.offsetWidth;
-  canvas.height = canvas.parentElement.offsetHeight;
-
   const { x, y, width, height } = element.getBoundingClientRect();
-  const {
-    x: canvasX,
-    y: canvasY,
-    width: canvasWidth,
-    height: canvasHeight,
-  } = canvas.getBoundingClientRect();
-
-  // const x = element.offsetLeft;
-  // const y = element.offsetTop;
-  // const height = element.offsetHeight;
-  // const width = element.offsetWidth;
+  const { x: canvasX, y: canvasY } = canvas.getBoundingClientRect();
 
   const paddingLeft = Math.round(
     parseFloat(getProperty(element, 'padding-left'))
@@ -41,37 +28,54 @@ function drawLines(ctx, canvas, element, props) {
     parseFloat(getProperty(element, 'padding-bottom'))
   );
 
-  const ARROW_DISTANCE_H = 14;
-  const ARROW_DISTANCE_V = 17;
-
-  const { spacing } = props.theme;
+  const { spacing } = props.theme || {};
 
   if (paddingLeft) {
-    rect({ ctx, x: x - canvasX, y: y - canvasY, width: paddingLeft, height });
+    const [text] = Object.keys(spacing).filter(
+      key => spacing[key] === paddingLeft
+    );
+
+    text &&
+      rect({ ctx, x: x - canvasX, y: y - canvasY, width: paddingLeft, height });
   }
 
   if (paddingRight) {
-    rect({
-      ctx,
-      x: x - canvasX + width - paddingRight,
-      y: y - canvasY,
-      width: paddingRight,
-      height,
-    });
+    const [text] = Object.keys(spacing).filter(
+      key => spacing[key] === paddingRight
+    );
+
+    text &&
+      rect({
+        ctx,
+        x: x - canvasX + width - paddingRight,
+        y: y - canvasY,
+        width: paddingRight,
+        height
+      });
   }
 
   if (paddingTop) {
-    rect({ ctx, x: x - canvasX, y: y - canvasY, width, height: paddingTop });
+    const [text] = Object.keys(spacing).filter(
+      key => spacing[key] === paddingTop
+    );
+
+    text &&
+      rect({ ctx, x: x - canvasX, y: y - canvasY, width, height: paddingTop });
   }
 
   if (paddingBottom) {
-    rect({
-      ctx,
-      x: x - canvasX,
-      y: y - canvasY + height - paddingBottom,
-      width,
-      height: paddingBottom,
-    });
+    const [text] = Object.keys(spacing).filter(
+      key => spacing[key] === paddingBottom
+    );
+
+    text &&
+      rect({
+        ctx,
+        x: x - canvasX,
+        y: y - canvasY + height - paddingBottom,
+        width,
+        height: paddingBottom
+      });
   }
 }
 
@@ -79,21 +83,8 @@ function rect(props) {
   const { ctx, x, y, width, height } = props;
 
   ctx.globalCompositeOperation = 'luminosity';
-  ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
+  ctx.fillStyle = '#C2CE89';
   ctx.fillRect(x, y, width, height);
-}
-
-function rectH(props) {
-  const { ctx, x, y } = props;
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = 'red';
-  ctx.setLineDash([5, 2]);
-
-  ctx.beginPath();
-  ctx.moveTo(x - 30, y);
-  ctx.lineTo(x - 4, y);
-  ctx.stroke();
-  ctx.closePath();
 }
 
 function getProperty(element, prop) {
@@ -110,9 +101,11 @@ const CanvasComponent = ({ children, state }) => {
 
   useEffect(() => {
     const {
-      current: { firstChild: component },
+      current: { firstChild: component }
     } = wrapperRef;
     const { current: canvas } = canvasRef;
+    const componentArray = Array.from(component.children).flat(Infinity);
+
     const ctx = canvas.getContext('2d');
 
     const animationDuration = transformToMs(
@@ -122,10 +115,15 @@ const CanvasComponent = ({ children, state }) => {
       getProperty(component, 'transition-delay')
     );
 
-    setTimeout(
-      () => drawLines(ctx, canvas, component, children.props),
-      animationDuration + animationDelay
-    );
+    setTimeout(() => {
+      canvas.width = canvas.parentElement.offsetWidth;
+      canvas.height = canvas.parentElement.offsetHeight;
+
+      drawLines(ctx, canvas, component, children.props);
+      componentArray.forEach((child, index) => {
+        drawLines(ctx, canvas, child, children.props.children[index].props);
+      });
+    }, animationDuration + animationDelay);
   }, [state]);
 
   return (
@@ -171,12 +169,13 @@ const Preview = styled.div`
   position: relative;
 `;
 
-const LivePreview = ({ component: { type: Component }, state, onChange }) => (
+const LivePreview = ({ component: Component, state, onChange }) => (
   <>
-    <MainTitle as="h2">Appearence</MainTitle>
+    <MainTitle as='h2'>Appearence</MainTitle>
     <Preview>
       <CanvasComponent state={state}>
-        <Component {...state} onChange={(e, data) => onChange(data)} />
+        {Component}
+        {/* <Component {...state} onChange={(e, data) => onChange(data)} /> */}
       </CanvasComponent>
     </Preview>
   </>
@@ -185,7 +184,7 @@ const LivePreview = ({ component: { type: Component }, state, onChange }) => (
 LivePreview.propTypes = {
   state: PropTypes.instanceOf(Object).isRequired,
   component: PropTypes.instanceOf(Object).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 export default LivePreview;
