@@ -12,13 +12,13 @@ background or foreground of an experience.
 const CardExample = () => (
   <Card>
     <Card.Header>
-      <Card.Thumbnail src='http://i.pravatar.cc/72' alt='Avatar' />
+      <Card.Thumbnail src="http://i.pravatar.cc/72" alt="Avatar" />
       <Card.HeaderText>
         <Card.Title small>Title</Card.Title>
         <Card.Description>Lorem ipsum dolor sit amet.</Card.Description>
       </Card.HeaderText>
     </Card.Header>
-    <Card.Media src='http://placekitten.com/g/800' alt='A beautiful Cat' />
+    <Card.Media src="http://placekitten.com/g/800" alt="A beautiful Cat" />
     <Card.Content>
       Duis ac enim non leo dapibus placerat ut vel ligula. Pellentesque sed
       metus elit. In hac habitasse platea dictumst. Fusce non purus a dui semper
@@ -29,11 +29,11 @@ const CardExample = () => (
       style={{
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
       }}
     >
       <div>
-        <Button size='small' skin='secondary'>
+        <Button size="small" skin="secondary">
           See more
         </Button>
       </div>
@@ -45,15 +45,15 @@ const CardExample = () => (
 storiesOf('Button', module).add('default', () => (
   <LivePreview
     component={
-      <Card>
+      <Card gg="daltoso">
         <Card.Header>
-          <Card.Thumbnail src='http://i.pravatar.cc/72' alt='Avatar' />
+          <Card.Thumbnail src="http://i.pravatar.cc/72" alt="Avatar" />
           <Card.HeaderText>
             <Card.Title small>Title</Card.Title>
             <Card.Description>Lorem ipsum dolor sit amet.</Card.Description>
           </Card.HeaderText>
         </Card.Header>
-        <Card.Media src='http://placekitten.com/g/800' alt='A beautiful Cat' />
+        <Card.Media src="http://placekitten.com/g/800" alt="A beautiful Cat" />
         <Card.Content>
           Duis ac enim non leo dapibus placerat ut vel ligula. Pellentesque sed
           metus elit. In hac habitasse platea dictumst. Fusce non purus a dui
@@ -64,11 +64,11 @@ storiesOf('Button', module).add('default', () => (
           style={{
             display: 'flex',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <div>
-            <Button size='small' skin='secondary'>
+            <Button size="small" skin="secondary">
               See more
             </Button>
           </div>
