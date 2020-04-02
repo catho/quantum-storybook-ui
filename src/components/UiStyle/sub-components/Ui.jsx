@@ -25,6 +25,7 @@ const Ui = () => (
   <>
     <Style />
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=block" rel="stylesheet" />
   </>
 );
 
