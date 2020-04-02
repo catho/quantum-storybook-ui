@@ -1,8 +1,7 @@
+import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
-const Ui = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Fira+Mono');
-
+const Style = createGlobalStyle`
   body {
     margin: 0;
     padding: 0 0 90px 0;
@@ -21,5 +20,12 @@ const Ui = createGlobalStyle`
     padding: 2px 5px;
   }
 `;
+
+const Ui = () => (
+  <>
+    <Style />
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet" />
+  </>
+);
 
 export default Ui;
