@@ -1,6 +1,6 @@
 {
   "name": "@catho/quantum-storybook-ui",
-  "version": "1.1.1",
+  "version": "1.2.4",
   "private": false,
   "keywords": [
     "catho",
@@ -19,7 +19,6 @@
   "main": "dist/index.js",
   "dependencies": {
     "@catho/quantum": "^1.8.0",
-    "commitizen": "^3.0.7",
     "react-markdown": "^4.0.6"
   },
   "peerDependencies": {
@@ -54,7 +53,8 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "rimraf": "^2.6.3",
-    "styled-components": "^4.1.3"
+    "styled-components": "^4.1.3",
+    "commitizen": "^3.0.7"
   },
   "config": {
     "commitizen": {
